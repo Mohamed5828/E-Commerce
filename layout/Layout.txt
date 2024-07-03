@@ -1,0 +1,1 @@
+this folder will contain the html pages and the js files that will append Main elements to the dom
