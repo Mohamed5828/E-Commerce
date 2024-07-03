@@ -1,0 +1,35 @@
+@use "sass:math";
+@import "./colors";
+@import "./variables";
+@import "./breakpoints";
+@import "./gridSystem";
+body {
+  background-color: $light-bg;
+  color: $light-text;
+  transition: background-color 0.3s, color 0.3s;
+
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
