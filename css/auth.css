@@ -1,0 +1,54 @@
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  width: 20rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  row-gap: 1rem;
+}
+
+.auth_container * {
+  font-size: 1.2rem;
+}
+
+.auth_container button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.auth_container ul {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  display: flex;
+  padding: 0;
+}
+
+.auth_container li {
+  list-style: none;
+  cursor: pointer;
+  font-weight: bolder;
+  width: 50%;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.shown-container {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden-container {
+  display: none;
+}
