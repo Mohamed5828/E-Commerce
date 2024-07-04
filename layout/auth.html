@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signin</title>
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+<div class="center-div">
+  <div class="auth_container">
+    <ul>
+      <li>Sign in</li>
+      <li>Sign up</li>
+    </ul>
+    <div class="hidden-container">
+      <form action="" id="signin-form">
+        <label for="signin-email">Email</label><br>
+        <input type="email" name="email" id="signin-email">
+        <br>
+        <label for="signin-password">Password</label><br>
+        <input type="password" name="password" id="signin-password">
+        <br>
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
+    <div class="shown-container">
+      <form action="" id="signup-form">
+        <label for="signup-name">Name</label><br>
+        <input type="text" name="name" id="signup-name">
+        <br>
+        <label for="signup-email">Email</label><br>
+        <input type="email" name="email" id="signup-email">
+        <br>
+        <label for="signup-password">Password</label><br>
+        <input type="password" name="password" id="signup-password">
+        <br>
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+    <script src="auth.js"></script>
+  </div>
+
+</div>
+</body>
+</html>
