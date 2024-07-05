@@ -6,15 +6,15 @@
   <link rel="stylesheet" href="../css/auth.css">
   <!--  <link rel="stylesheet" href="../css/home.css">-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script src="./auth.js" defer></script>
+  <script src="./auth.js" type="module" defer></script>
 
 </head>
 <body>
 <div class="center-div">
   <div class="auth-container">
     <ul>
-      <li onclick="switchTabSignIn()">Sign in</li>
-      <li onclick="switchTabSignup()">Sign up</li>
+      <li id="signin-tab">Sign in</li>
+      <li id="signup-tab">Sign up</li>
     </ul>
     <div id="signin-div" class="shown-container">
       <form action="../index.html" id="signin-form">
