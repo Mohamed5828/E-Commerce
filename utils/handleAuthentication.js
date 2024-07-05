@@ -79,11 +79,20 @@ export function handleSignUp(event) {
     form.submit()
   }
 }
-
+/**
+ * Retrieves the ID of the currently logged-in user from either localStorage or sessionStorage.
+ *
+ * @return {int} The ID of the currently logged-in user, or -1 if no user is logged in.
+ */
 export function getLoggedInUserId() {
   return parseInt(localStorage.getItem("auth-user")) ?? parseInt(sessionStorage.getItem("auth-user")) ?? -1
 }
 
+/**
+ * Logs out the currently logged-in user by removing their ID from localStorage and redirecting to the login page.
+ *
+ * @return {void} This function does not return anything.
+ */
 export function logout() {
   localStorage.removeItem("auth-user")
   sessionStorage.removeItem("auth-user")
