@@ -79,3 +79,12 @@ export function handleSignUp(event) {
     form.submit()
   }
 }
+
+export function getLoggedInUserId() {
+  return parseInt(localStorage.getItem("auth-user")) ?? parseInt(sessionStorage.getItem("auth-user")) ?? -1
+}
+
+export function logout() {
+  localStorage.removeItem("auth-user")
+  sessionStorage.removeItem("auth-user")
+}
