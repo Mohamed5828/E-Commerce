@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign up</title>
+  <link rel="stylesheet" href="../css/auth.css">
+  <!--  <link rel="stylesheet" href="../css/home.css">-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="./auth.js" type="module" defer></script>
+
+</head>
+<body>
+<div class="center-div">
+  <div class="auth-container">
+    <ul>
+      <li id="signin-tab">Sign in</li>
+      <li id="signup-tab">Sign up</li>
+    </ul>
+    <div id="signin-div" class="shown-container">
+      <form action="../index.html" id="signin-form">
+        <label for="signin-email">Email</label><br>
+        <input type="email" name="email" id="signin-email" required>
+        <br>
+        <label for="signin-password">Password</label><br>
+        <input type="password" name="password" id="signin-password" required>
+        <br>
+        <div><input type="checkbox" name="rem-me" id="rem-me">
+        <label for="rem-me">Remember me?</label></div><br>
+        <span class="auth-err-msg" id="auth-err-msg-signin" style="display: none">This email and password combination does not exist</span>
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
+    <div id="signup-div" class="hidden-container">
+      <form action="#" id="signup-form">
+        <label for="signup-name">Name</label><br>
+        <input type="text" name="uname" id="signup-name" required>
+        <br>
+        <label for="signup-email">Email</label><br>
+        <input type="email" name="email" id="signup-email" required>
+        <br>
+        <label for="signup-password">Password</label><br>
+        <input type="password" name="password" id="signup-password" required>
+        <br>
+        <span class="auth-err-msg" id="auth-err-msg-signup" style="display: none">This email is already registered</span>
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
