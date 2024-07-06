@@ -1,0 +1,72 @@
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  width: 20rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  row-gap: 1rem;
+}
+
+.auth-container * {
+  font-size: 1.2rem;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.auth-container ul {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  display: flex;
+  padding: 0;
+  margin: 0
+}
+
+.auth-container li {
+  list-style: none;
+  cursor: pointer;
+  font-weight: bolder;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.shown-container {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  height: 20rem;
+}
+.shown-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  height: 80%;
+}
+
+.hidden-container {
+  display: none;
+}
+
+.auth-err-msg{
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
