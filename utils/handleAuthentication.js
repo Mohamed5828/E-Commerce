@@ -43,7 +43,7 @@ export function handleSignIn(event) {
     }
     form.submit()
   } else {
-    document.getElementById("auth-err-msg-signin").style.display = "block"
+    document.getElementById("auth-err-msg-signin").style.display = "inline"
     form.reset()
   }
 }
@@ -69,7 +69,7 @@ export function handleSignUp(event) {
     id: user_id_counter, name: name, email: email, salt: salt, hashed_password: hashPassword(password, salt)
   }
   if (users.find(user => user.email === email)) {
-    document.getElementById("auth-err-msg-signup").style.display = "block"
+    document.getElementById("auth-err-msg-signup").style.display = "inline"
     form.reset()
   } else {
     document.getElementById("auth-err-msg-signup").style.display = "none"
