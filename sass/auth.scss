@@ -1,0 +1,89 @@
+@use "sass:math";
+@import "./colors";
+@import "./variables";
+@import "./breakpoints";
+@import "./gridSystem";
+
+body {
+  background-color: $light-bg;
+  color: $light-text;
+
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
+}
+
+.center-div {
+  @extend %flex-center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.auth-container {
+  //@extend %input-container;
+  //@extend %flex-column;
+  //align-content: center;
+  //justify-content: center;
+  ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      list-style: none;
+      cursor: pointer;
+      font-weight: bolder;
+      width: 30%;
+      height: 100%;
+      text-align: center;
+      padding: $base-padding;
+      border: $base-border;
+      border-radius: $base-border-radius;
+    }
+
+  }
+
+  form {
+    @extend %input-container;
+    @extend %auth-form;
+    position: relative;
+
+    button {
+      @extend %input-field;
+    }
+
+    label {
+      //@extend %label
+    }
+
+    input {
+      @extend %input-field;
+
+    }
+  }
+
+}
+
+.shown-container {
+  @extend %flex-column;
+  @extend %flex-center;
+  height: 25rem;
+}
+
+.hidden-container {
+  display: none;
+}
+
+.selected-tab {
+  box-shadow: $heavy-box-shadow
+}
+
+.auth-err-msg {
+  @extend %error-msg-text;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
