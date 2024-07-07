@@ -13,13 +13,15 @@ $base-border-thickness: 1px;
 
 $base-border-radius: 20px;
 
-$base-border: 1px solid (0, 0, 0, 0.1);
+$base-border: 1px solid rgba(0, 0, 0, 0.1);
 
 $combined-value: $base-border-radius + 16 * 0.75;
 
 $cart-width-height: 40px;
 
 $base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+$heavy-box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.2);
 
 $base-font-size: 1rem;
 
@@ -40,6 +42,7 @@ $max-search-width: 600px;
   padding-top: $top-padding;
   box-sizing: border-box;
 }
+
 %input-container {
   max-width: 400px;
   margin: 0 auto;
@@ -61,6 +64,11 @@ $max-search-width: 600px;
 %flex-center {
   display: flex;
   align-items: center;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 %arrow {
@@ -87,12 +95,25 @@ $max-search-width: 600px;
   border: 1px solid #ccc;
   margin-bottom: $base-margin;
 }
+
 %label {
   margin-bottom: $base-margin * 0.5;
   color: #333;
 }
 
-%form {
-  display: flex;
-  flex-direction: column;
+%auth-form {
+  @extend %flex-column;
+  justify-content: space-between;
+  width: 80%;
+  height: 80%;
+  margin: 0;
+}
+
+%error-msg-text {
+  display: inline;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }

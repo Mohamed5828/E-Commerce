@@ -14,7 +14,8 @@ function switchTabSignIn() {
   document.getElementById("signup-div").classList.replace("shown-container", "hidden-container")
   document.title = "Sign in"
   document.getElementById("auth-err-msg-signin").style.display = "none"
-
+  document.getElementById("signin-tab").classList.add("selected-tab")
+  document.getElementById("signup-tab").classList.remove("selected-tab")
 }
 
 /**
@@ -25,5 +26,11 @@ function switchTabSignUp() {
   document.getElementById("signup-div").classList.replace("hidden-container", "shown-container")
   document.title = "Sign up"
   document.getElementById("auth-err-msg-signup").style.display = "none"
+  document.getElementById("signup-tab").classList.add("selected-tab")
+  document.getElementById("signin-tab").classList.remove("selected-tab")
 
 }
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
