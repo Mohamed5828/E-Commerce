@@ -1,7 +1,21 @@
-document.getElementById('search-button').addEventListener('click', searchProducts);
+document.getElementById('searchIcon').addEventListener('click', function() {
+    let searchInput = document.getElementById('newSearchInput');
+    if (searchInput.classList.contains('show')) {
+        searchInput.classList.remove('show');
+    } else {
+        searchInput.classList.add('show');
+        searchInput.focus();
+    }
+});
+document.getElementById('newSearchInput').addEventListener('blur', function() {
+    let searchInput = document.getElementById('newSearchInput');
+    searchInput.classList.remove('show');
+});
 
-function searchProducts() {
-    const query = document.getElementById('search-input').value;
+document.getElementById('newSearchInput').addEventListener('keyup',newsearchProducts)
+
+function newsearchProducts(){
+    const query=document.getElementById('newSearchInput').value;
     fetch(`https://dummyjson.com/products/search?q=${query}`)
         .then(res => res.json())
         .then(data => {
@@ -12,13 +26,13 @@ function searchProducts() {
         });
 }
 
-function displayProducts(products) {
+function displayProducts(products){
     const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
+    productList.innerHTML= '';
 
     products.forEach(product => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
+        const productDiv=document.createElement('div');
+        productDiv.className='product'
         productDiv.innerHTML = `
             <img src="${product.thumbnail}">
             <h2>${product.title}</h2>

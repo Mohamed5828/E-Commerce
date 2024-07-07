@@ -9,15 +9,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../sass/home.css" />
+    <link rel="stylesheet" href="../css/Search.css" />
   </head>
   <body>
     <!--start navbar-->
     <header class="header">
       <nav class="navbar">
         <div class="row container d-flex">
-          <div class="logo">
-            <img src="" alt="" />
-          </div>
+          <button id="theme-toggle">Toggle Theme</button>
 
           <div class="nav-list d-flex">
             <a href="">Home</a>
@@ -32,7 +31,15 @@
           </div>
 
           <div class="icons d-flex">
-            <div class="icon d-flex"><i class="bx bx-search"></i></div>
+            <div id="searchIcon" class="icon d-flex">
+              <i class="bx bx-search"></i>
+            </div>
+            <input
+              type="text"
+              class="new-search-input"
+              id="newSearchInput"
+              placeholder="Search..."
+            />
             <div class="icon user-icon d-flex">
               <i class="bx bx-user"></i>
             </div>
@@ -49,8 +56,12 @@
       </nav>
     </header>
     <!--end navbar-->
+    <main>
+      <div id="product-list"></div>
+    </main>
 
     <script src="../app.js"></script>
     <script src="navbar.js"></script>
+    <script src="../utils/SearchBar.js"></script>
   </body>
 </html>
