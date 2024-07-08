@@ -1,3 +1,4 @@
+//Searching
 document.getElementById('searchIcon').addEventListener('click', function() {
     let searchInput = document.getElementById('newSearchInput');
     if (searchInput.classList.contains('show')) {
@@ -26,6 +27,22 @@ function newsearchProducts(){
         });
 }
 
+
+//Categorization
+const dropdownToggle = document.getElementById("dropdowntoggle");
+const dropdownMenu = document.getElementById('dropdownmenu');
+
+function categorizeProducts() {
+    const category = document.getElementById('category').value;
+
+    fetch(`https://dummyjson.com/products/category/${category}`)
+        .then(res => res.json())
+        .then(data => displayProducts(data.products))
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+
+//display function
 function displayProducts(products){
     const productList = document.getElementById('product-list');
     productList.innerHTML= '';
