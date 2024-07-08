@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let products = document.querySelector('.product');
-    async function fetchProducts(url) {
-      let data = await fetch(url);
-      let response =  await data.json();
-  
-      for (let i = 0; i < response.products.length; i++) {
-        products.innerHTML +=  `  
+document.addEventListener("DOMContentLoaded", function () {
+  let products = document.querySelector(".product");
+  async function fetchProducts(url) {
+    let data = await fetch(url);
+    let response = await data.json();
+
+    for (let i = 0; i < response.products.length; i++) {
+      products.innerHTML += `  
         <div class="card">    
         <img src="${response.products[i].thumbnail}" alt="thumbnail">
         <div class="container">
@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         </div>
     `;
-      }
     }
-    fetchProducts('https://dummyjson.com/products/');
-  });
-  
+  }
+  fetchProducts("https://dummyjson.com/products/");
+});
