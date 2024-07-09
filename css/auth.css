@@ -13,14 +13,12 @@
   align-items: center;
 }
 
-.shown-container,
-.auth-container form {
+.shown-container, .auth-container form {
   display: flex;
   flex-direction: column;
 }
 
-.auth-container form input,
-.auth-container form button {
+.auth-container form input, .auth-container form button {
   padding: 0.375rem;
   border-radius: 3px;
   font-size: 1rem;
