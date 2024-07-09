@@ -1,0 +1,87 @@
+body {
+  background-color: #ddf2fd;
+  color: #000000;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+  background-color: #2f3e46;
+  color: #ffffff;
+}
+
+.cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  border-radius: 10px;
+  margin: auto;
+  width: 20rem;
+}
+
+.cards:hover:before {
+  opacity: 1;
+}
+
+.cards:hover .card-desc {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.cards:before {
+  content: "";
+  display: block;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+.card-img {
+  position: relative;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 20rem;
+  height: 19rem;
+}
+
+.card-desc {
+  position: absolute;
+  letter-spacing: 0.1rem;
+  word-break: break-word;
+  display: grid;
+  justify-content: center;
+  z-index: 1;
+  color: #000000;
+  opacity: 0;
+  background: rgba(107, 114, 142, 0.6);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 20rem;
+  height: 19rem;
+}
+
+.container {
+  padding: 0.75rem;
+}
+
+.product {
+  padding: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+  margin: 0.75rem;
+}
+
+.addtocart {
+  display: block;
+  padding: 0.75rem;
+  border: 0px;
+  border-radius: 10px;
+  position: relative;
+  background: rgb(71, 78, 104);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.1s;
+  z-index: 1;
+  width: 20rem;
+}
+
+.addtocart:hover {
+  transform: scale(1.1);
+}
