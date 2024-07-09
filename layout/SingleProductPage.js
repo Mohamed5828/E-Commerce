@@ -3,8 +3,19 @@ import { fetchData } from "../utils/FetchData.js";
 const body = document.body;
 let params = new URLSearchParams(window.location.search);
 let mainDiv = document.getElementById("main");
-
+let navbar = document.getElementById("navbar-container");
 async function main() {
+  try {
+    fetch("navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+        navbar.innerHTML = data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
   try {
     const { data, isLoading, isError } = await fetchData(
       "https://dummyjson.com/products/1"
