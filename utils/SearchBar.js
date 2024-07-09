@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//Searching
+>>>>>>> 0ec206c4c21ee06b1a88d8b029f490016c1fb27d
 document.getElementById('searchIcon').addEventListener('click', function() {
     let searchInput = document.getElementById('newSearchInput');
     if (searchInput.classList.contains('show')) {
@@ -26,6 +30,25 @@ function newsearchProducts(){
         });
 }
 
+<<<<<<< HEAD
+=======
+
+//Categorization
+const dropdownToggle = document.getElementById("dropdowntoggle");
+const dropdownMenu = document.getElementById('dropdownmenu');
+
+function categorizeProducts() {
+    const category = document.getElementById('category').value;
+
+    fetch(`https://dummyjson.com/products/category/${category}`)
+        .then(res => res.json())
+        .then(data => displayProducts(data.products))
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+
+//display function
+>>>>>>> 0ec206c4c21ee06b1a88d8b029f490016c1fb27d
 function displayProducts(products){
     const productList = document.getElementById('product-list');
     productList.innerHTML= '';

@@ -1,21 +1,12 @@
 import { fetchData } from "../utils/FetchData.js";
+import { initCart } from "./cart.js";
 
 const body = document.body;
 let params = new URLSearchParams(window.location.search);
 let mainDiv = document.getElementById("main");
 let navbar = document.getElementById("navbar-container");
+let cart = document.getElementById("cart-container");
 async function main() {
-  try {
-    fetch("navbar.html")
-      .then((response) => response.text())
-      .then((data) => {
-        console.log(data);
-        navbar.innerHTML = data;
-      });
-  } catch (error) {
-    console.log(error);
-  }
-
   try {
     const { data, isLoading, isError } = await fetchData(
       "https://dummyjson.com/products/1"
@@ -81,17 +72,23 @@ async function main() {
               <ul class="lite-info-ul">
               <li class="lite-info-li">Brand: ${data.brand}</li>
               <li class="lite-info-li">SKU: ${data.sku}</li>
-              <li class="lite-info-li"> Available: ${data.availabilityStatus}</li>
+              <li class="lite-info-li"> Available: ${
+                data.availabilityStatus
+              }</li>
                 <li class="lite-info-li">Package Dimensions: 
                 <span class="small-dimen">
-                width: ${data.dimensions.width}, height:  ${data.dimensions.height}, depth:  ${data.dimensions.depth}
+                width: ${data.dimensions.width}, height:  ${
+      data.dimensions.height
+    }, depth:  ${data.dimensions.depth}
                     </span>
                   </li>
-                <li class="lite-info-li">Shipping Weight: ${data.weight} Grams</li>
+                <li class="lite-info-li">Shipping Weight: ${
+                  data.weight
+                } Grams</li>
               </ul>
             </div>
             <div class="price font-bold">Price: ${data.price} L.E.</div>
-            <button class="cart-btn" id="addToCartBtn">Add to cart</button>
+            <button class="add-to-cart-btn" id="addToCartBtn" data-id=${1}>Add to cart</button>
           </div>
         </div>
         <div class="product-overview">
@@ -103,9 +100,9 @@ async function main() {
               <h2 class="info-title">Description </h2>
               <div class="description">${data.description}</div>
               <h2 class="info-title">Return Policy</h2>
-              <div class="other-ingredients">${data.returnPolicy}</div>
+              <div class="description">${data.returnPolicy}</div>
               <h2 class="info-title">Warranty</h2>
-              <div class="warning">${data.warrantyInformation}</div>
+              <div class="description">${data.warrantyInformation}</div>
               <h2 class="info-title">Reviews</h2>
               <div class="reviews">${reviewsHtml}</div>
             </div>
@@ -124,10 +121,11 @@ async function main() {
     //   });
     // });
 
-    document.getElementById("addToCartBtn").addEventListener("click", () => {
-      handleAddToCart();
-      toggleCart();
-    });
+    // document.getElementById("addToCartBtn").addEventListener("click", () => {
+    //   handleAddToCart();
+    //   toggleCart();
+    // });
+    initCart();
   } catch (error) {
     console.error("Error in main function:", error);
   }

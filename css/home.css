@@ -1,12 +1,11 @@
-.row {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-}
 body {
   background-color: #ddf2fd;
   color: #000000;
   transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+  background-color: #2f3e46;
+  color: #ffffff;
 }
 
 *,
@@ -15,7 +14,10 @@ body {
   box-sizing: border-box;
 }
 
-img {
+img,
+picture,
+svg,
+video {
   display: block;
   max-width: 100%;
 }
