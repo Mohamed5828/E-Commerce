@@ -9,9 +9,9 @@ function buildStyles() {
 }
 
 function purgeUnusedCSS() {
-  return src("css/*.css")
-    .pipe(purgecss({ content: ["**/*.html"] }))
-    .pipe(dest("css"));
+  return src("css/*.css");
+  // .pipe(purgecss({ content: ["**/*.html"] }))
+  // .pipe(dest("css"));
 }
 
 function watchTask() {

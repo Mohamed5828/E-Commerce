@@ -56,8 +56,3 @@ header {
     transition: width 0.3s ease;
     margin-right: 7rem;
 }
-
-.new-search-input.show {
-    display: block;
-    width: 200px;
-}
