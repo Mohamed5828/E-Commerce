@@ -1,3 +1,16 @@
+.m-cart-btn,
+.m-img-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
 .title {
   display: flex;
   flex-direction: column;

@@ -8,17 +8,20 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.shown-container, .center-div {
+.shown-container,
+.center-div {
   display: flex;
   align-items: center;
 }
 
-.shown-container, .auth-container form {
+.shown-container,
+.auth-container form {
   display: flex;
   flex-direction: column;
 }
 
-.auth-container form input, .auth-container form button {
+.auth-container form input,
+.auth-container form button {
   padding: 0.375rem;
   border-radius: 3px;
   font-size: 1rem;
