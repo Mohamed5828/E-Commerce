@@ -28,6 +28,12 @@ function hashPassword(password, salt) {
   return CryptoJS.SHA256(password + salt).toString();
 }
 
+/**
+ * Handles the sign-in process by retrieving the email, and password from the form,
+ * fetching the "auth-users" data from JSON server, and comparing the form data with the auth-users
+ * @param event
+ * @returns {Promise<void>}
+ */
 export async function handleSignIn(event) {
   let form = event.target
   event.preventDefault()
@@ -35,21 +41,26 @@ export async function handleSignIn(event) {
   let email = (form.email.value).toLowerCase()
   let password = form.password.value
   let remMe = form["rem-me"].checked
+  try {
+    let users = await retrieveUsers()
 
-  let users = await retrieveUsers()
-
-  let user = users.find(user => user.email === email && user.hashed_password === hashPassword(password, user.salt))
-  if (user) {
-    if (remMe) {
-      localStorage.setItem("auth-user", user.id)
+    let user = users.find(user => user.email === email && user.hashed_password === hashPassword(password, user.salt))
+    if (user) {
+      if (remMe) {
+        localStorage.setItem("auth-user", user.id)
+      } else {
+        sessionStorage.setItem("auth-user", user.id)
+      }
+      form.submit()
     } else {
-      sessionStorage.setItem("auth-user", user.id)
+      document.getElementById("auth-err-msg-signin").style.display = "inline"
+      form.reset()
     }
-    form.submit()
-  } else {
-    document.getElementById("auth-err-msg-signin").style.display = "inline"
-    form.reset()
+  }catch (e){
+    console.error(e)
+    alert(e)
   }
+
 }
 
 /**
