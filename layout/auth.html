@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
   <link rel="stylesheet" href="../css/auth.css">
   <!--  <link rel="stylesheet" href="../css/home.css">-->
@@ -10,10 +11,11 @@
 
 </head>
 <body>
-<div class="center-div">
+<div class="auth-center-div">
+  <div class="close-auth"><span></span><span></span></div>
   <div class="auth-container">
     <ul>
-      <li id="signin-tab" class ="selected-tab">Sign in</li>
+      <li id="signin-tab" class="selected-tab">Sign in</li>
       <li id="signup-tab">Sign up</li>
     </ul>
     <div id="signin-div" class="shown-container">
@@ -25,7 +27,8 @@
         <input type="password" name="password" id="signin-password" required>
         <br>
         <div><input type="checkbox" name="rem-me" id="rem-me">
-        <label for="rem-me">Remember me?</label></div><br>
+          <label for="rem-me">Remember me?</label></div>
+        <br>
         <span class="auth-err-msg" id="auth-err-msg-signin" style="display: none">This email and password combination does not exist</span>
         <button type="submit">Sign in</button>
       </form>
@@ -33,15 +36,18 @@
     <div id="signup-div" class="hidden-container">
       <form action="#" id="signup-form">
         <label for="signup-name">Name</label><br>
-        <input type="text" name="uname" id="signup-name" pattern="^[a-zA-z]{2,}(\s[a-zA-z]{2,})*$" title="First name and each space-separated sub-name must be at least 2 letter" required>
+        <input type="text" name="uname" id="signup-name" pattern="^[a-zA-z]{2,}(\s[a-zA-z]{2,})*$"
+               title="First name and each space-separated sub-name must be at least 2 letter" required>
         <br>
         <label for="signup-email">Email</label><br>
         <input type="email" name="email" id="signup-email" required>
         <br>
         <label for="signup-password">Password</label><br>
-        <input type="password" name="password" id="signup-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$" title="Password must be at least 8 or more chars containing capital, small and numbers">
+        <input type="password" name="password" id="signup-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$"
+               title="Password must be at least 8 or more chars containing capital, small and numbers">
         <br>
-        <span class="auth-err-msg" id="auth-err-msg-signup" style="display: none">This email is already registered</span>
+        <span class="auth-err-msg" id="auth-err-msg-signup"
+              style="display: none">This email is already registered</span>
         <button type="submit">Sign up</button>
       </form>
     </div>
