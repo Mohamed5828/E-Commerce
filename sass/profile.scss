@@ -1,0 +1,59 @@
+@use "sass:math";
+@import "./colors";
+@import "./variables";
+@import "./breakpoints";
+@import "./gridSystem";
+
+.profile-main {
+  max-height: 98vh;
+  overflow: hidden;
+  display: flex;
+
+  * {
+    padding: $base-padding;
+  }
+
+  aside {
+    img {
+      max-width: 200px;
+      border-radius: 50%;
+    }
+
+    button {
+      @extend %input-field;
+      margin-top: auto;
+    }
+
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.profile_orders {
+  width: 100%;
+  border-left: $base-border;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    padding: 0;
+    height: 1px;
+    width: 100%
+  }
+
+  section {
+    @extend %flex-column;
+    overflow-y: scroll;
+    flex-grow: 1;
+
+    .order-card-item {
+      //border-top: $base-border;
+      display: flex;
+      margin: $base-margin;
+      border: $base-border;
+    }
+  }
+
+}
+

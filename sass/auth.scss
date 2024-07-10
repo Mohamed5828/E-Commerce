@@ -14,7 +14,8 @@ body {
   }
 }
 
-.center-div {
+.auth-center-div {
+  position: relative;
   @extend %flex-center;
   justify-content: center;
   height: 100vh;
@@ -40,7 +41,7 @@ body {
       text-align: center;
       padding: $base-padding;
       border: $base-border;
-      border-radius: $base-border-radius;
+      border-radius: $base-border-radius * 0.25;
     }
 
   }
@@ -86,4 +87,29 @@ body {
   width: 100%;
   bottom: 0;
   left: 0;
+}
+
+.close-auth {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: $base-padding*2;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  span {
+    position: absolute;
+
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: rgba(0,0,0,0.4);
+    &:nth-of-type(1) {
+      transform: rotate(45deg) !important;
+    }
+
+    &:nth-of-type(2) {
+      transform: rotate(135deg) !important;
+    }
+  }
 }
