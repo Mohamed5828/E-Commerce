@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>E-Commerce</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-name">Shopping</div>
+        <form class="search-form">
+            <input class="new-search-input" id="newSearchInput" type="search" placeholder="Search your product">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <ul class="nav-links">
+            <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart (0)</a></li>
+            <li><a href="#"><i class="fa fa-heart"></i> Wishlist (0)</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fa fa-user"></i> Username</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">My Orders</a></li>
+                    <li><a href="#">My Wishlist</a></li>
+                    <li><a href="#">My Cart</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="side-panel-container"></div>
+    <main>
+        <div class="products">
+            <!-- Products will be dynamically displayed here -->
+          </div>
+          <div id="product-list"></div>
+    </main>
+    <button id="toggle-panel" class="toggle-panel-btn">Categories</button>
+    <script src="main.js"></script>
+</body>
+</html>
