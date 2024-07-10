@@ -85,3 +85,59 @@ header {
 #category:hover{
     color: #ff5e3a;
 }
+
+ /* Styles for side panel  */
+.side-panel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.side-panel.active {
+    display: block;
+    width: 15em;
+  }
+  
+  .side-panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+  }
+  
+  .side-panel ul li {
+    margin-bottom: 15px;
+  }
+  
+  .side-panel ul li a {
+    text-decoration: none;
+    color: #888585;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .side-panel ul li a:hover {
+    background-color: #ddd;
+    color: #000;
+  }
+  
+  /* Toggle button */
+  .toggle-panel-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
