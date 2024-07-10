@@ -30,8 +30,6 @@ function newsearchProducts() {
 }
 
 //Categorization
-const dropdownToggle = document.getElementById("dropdowntoggle");
-const dropdownMenu = document.getElementById("dropdownmenu");
 
 function categorizeProducts() {
   const category = document.getElementById("category").value;
@@ -58,4 +56,28 @@ function displayProducts(products) {
         `;
     productList.appendChild(productDiv);
   });
+}
+
+//aside categorization
+
+document.getElementById("toggle-panel").addEventListener("click", function () {
+  document.querySelector(".side-panel").classList.toggle("active");
+});
+function closeNav() {
+  document.querySelector(".side-panel").classList.toggle("active");
+}
+
+document.querySelectorAll(".side-panel a").forEach((link) => {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+    const category = this.getAttribute("data-category");
+    categorizeProducts(category);
+  });
+});
+
+function categorizeProducts(category) {
+  fetch(`https://dummyjson.com/products/category/${category}`)
+    .then((res) => res.json())
+    .then((data) => displayProducts(data.products))
+    .catch((error) => console.error("Error fetching products:", error));
 }
