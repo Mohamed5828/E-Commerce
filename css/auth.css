@@ -8,7 +8,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.shown-container, .center-div {
+.shown-container, .auth-center-div {
   display: flex;
   align-items: center;
 }
@@ -51,7 +51,8 @@ body.dark-mode {
   color: #ffffff;
 }
 
-.center-div {
+.auth-center-div {
+  position: relative;
   justify-content: center;
   height: 100vh;
   width: 100vw;
@@ -71,7 +72,7 @@ body.dark-mode {
   text-align: center;
   padding: 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  border-radius: 5px;
 }
 .auth-container form {
   position: relative;
@@ -93,4 +94,27 @@ body.dark-mode {
   width: 100%;
   bottom: 0;
   left: 0;
+}
+
+.close-auth {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.close-auth span {
+  position: absolute;
+  display: block;
+  height: 2px;
+  width: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.close-auth span:nth-of-type(1) {
+  transform: rotate(45deg) !important;
+}
+.close-auth span:nth-of-type(2) {
+  transform: rotate(135deg) !important;
 }

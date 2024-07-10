@@ -10,7 +10,7 @@ const serverUrl = `https://api.github.com/repos/Ahmed-Rushdi/json-page-test/cont
 /**
  * Generates a random HEX salt of the specified byte length.
  *
- * @param {int} length - The length of the salt.
+ * @param {int} length - The byte length of the salt.
  * @return {string} A randomly generated salt.
  */
 function generateRandomSalt(length) {
@@ -54,7 +54,7 @@ export async function handleSignIn(event) {
 
 /**
  * Handles the sign-up process by retrieving the name, email, and password from the form,
- * parsing the "auth-users" data from localStorage, and storing the retrieved name, email, and password.
+ * fetching the "auth-users" data from JSON server, and send the updated "auth-users" data back to JSON server.
  *
  * @return {void} This function does not return anything.
  * @param event
@@ -101,15 +101,20 @@ export function getLoggedInUserId() {
 }
 
 /**
- * Logs out the currently logged-in user by removing their ID from localStorage and redirecting to the login page.
+ * Logs out the currently logged-in user by removing their ID from localStorage and redirecting to home
  *
  * @return {void} This function does not return anything.
  */
 export function logout() {
   localStorage.removeItem("auth-user")
   sessionStorage.removeItem("auth-user")
+  location.href=`${location.hostname}/index.html`
 }
 
+/**
+ * retrieve sha of JSON server file to be updated
+ * @returns {Promise<*>} sha
+ */
 async function getSHA() {
 
   const response = await fetch(serverUrl, {
@@ -126,6 +131,13 @@ async function getSHA() {
 
 }
 
+/**
+ * Update the JSON server using GH API
+ * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#update-a-file
+ * @param sha sha of JSON server file to be updated
+ * @param newContent JSON of new content to update file
+ * @returns {Promise<void>}
+ */
 async function updateJsonServer(sha, newContent) {
   const body = {
     message: "Update DB",
@@ -146,6 +158,11 @@ async function updateJsonServer(sha, newContent) {
   }
 }
 
+/**
+ * Get the JSON server data using GH API
+ * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
+ * @returns {Promise<any>}
+ */
 async function fetchJsonServer() {
   const response = await fetch(serverUrl, {
     method: 'GET',
@@ -159,6 +176,10 @@ async function fetchJsonServer() {
   return await response.json();
 }
 
+/**
+ * fetch and extract user data
+ * @returns {Promise<any|*[]>}
+ */
 async function retrieveUsers() {
   return JSON.parse(
       atob((await fetchJsonServer()).content)
