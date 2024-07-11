@@ -69,6 +69,7 @@ function closeNav() {
 
   document.querySelectorAll('.side-panel a').forEach(link => {
     link.addEventListener('click', function(event) {
+        console.log("hello khaled")
       event.preventDefault();
       const category = this.getAttribute('data-category');
       categorizeProducts(category);
@@ -82,3 +83,39 @@ function closeNav() {
       .catch(error => console.error('Error fetching products:', error));
   }
   
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const productContainer = document.getElementById('product-container');
+    const sortOrder = document.getElementById('sort-order');
+
+    // Function to fetch and display products
+    function fetchProducts(order) {
+        let url = 'https://dummyjson.com/products';
+        if (order !== 'none') {
+            url += `?sortBy=price&order=${order}`;
+        }
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayProducts(data.products);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    }
+
+    // Event listener for sorting order changes
+    sortOrder.addEventListener('change', function() {
+        const selectedOrder = sortOrder.value;
+        fetchProducts(selectedOrder);
+    });
+
+    // Initial fetch
+    fetchProducts('none');
+});

@@ -24,7 +24,7 @@
               <a href="">About Us</a>
               <a href="">Lookups</a>
               <span id="categories">
-                <select id="category" onclick="categorizeProducts()">
+                <!-- <select id="category" onclick="categorizeProducts()">
                     <option value="all" >All Categories</option>
                     <option value="smartphones">smartphones</option>
                     <option value="beauty">beauty</option>
@@ -49,7 +49,7 @@
                     <option value="womens-dresses">womens-dresses</option>
                     <option value="womens-shoes">womens-shoes</option>
                     <option value="womens-watches">womens-watches</option>
-                </select>
+                </select> -->
                 <i class="bx bx-chevron-down"></i>
               </span>
               <div class="close">
@@ -77,6 +77,13 @@
       <!--end navbar-->
     <main>
       <aside class="side-panel">
+        <div class="custom-select-wrapper">
+          <select id="sort-order" class="custom-select">
+              <option value="none">None</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+          </select>
+        </div>
         <ul>
             <li><a href="#" data-category="smartphones">smartphones</a></li>
             <li><a href="#" data-category="beauty">beauty</a></li>
@@ -104,6 +111,9 @@
         </ul>
     </aside>
     <button id="toggle-panel" class="toggle-panel-btn">Categories</button>
+    <button id="sort-ascending">Sort by Price (Ascending)</button>
+    <button id="sort-descending">Sort by Price (Descending)</button>
+
 
       <div class="products">
         <!-- Products will be dynamically displayed here -->
