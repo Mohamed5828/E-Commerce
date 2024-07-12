@@ -58,6 +58,5 @@ async function navbar() {
               `;
 
   navbarContainer.innerHTML = navbarData;
-  initCart();
 }
 navbar();
