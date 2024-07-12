@@ -1,4 +1,4 @@
-import { fetchUsers, putUsers } from "./HandleAPI";
+import { fetchUsers, putUsers } from "./HandleAPI.js";
 
 /**
  * Generates a random HEX salt of the specified byte length.
@@ -106,7 +106,7 @@ export async function handleSignUp(event) {
  * @return {int} The ID of the currently logged-in user, or -1 if no user is logged in.
  */
 export function getLoggedInUserId() {
-  return parseInt(localStorage.getItem("auth-user")) ?? parseInt(sessionStorage.getItem("auth-user")) ?? -1
+  return parseInt(localStorage.getItem("auth-user") ?? sessionStorage.getItem("auth-user") ?? -1)
 }
 
 /**
