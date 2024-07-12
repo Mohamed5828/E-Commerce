@@ -1,3 +1,5 @@
+import {getLoggedInUserId} from "./handleAuthentication";
+
 /**
  * GitHub Repo Token
  */
@@ -38,7 +40,7 @@ async function getSHA(url) {
  * @param newContent JSON of new content to update file
  * @returns {Promise<void>}
  */
-async function updateJsonServer(url, sha, newContent) {
+async function putJsonServer(url, sha, newContent) {
   const body = {
     message: "Update DB",
     content: btoa(JSON.stringify(newContent)),
@@ -76,6 +78,7 @@ async function fetchJsonServer(url) {
   }
   return await response.json();
 }
+
 /**
  * Fetches users from the server and returns them as an array.
  * If the fetch fails, an error is thrown
@@ -99,6 +102,7 @@ export async function fetchCarts() {
       atob((await fetchJsonServer(cartUrl)).content)
   ) ?? []
 }
+
 /**
  * Update users data on the server.
  *
@@ -106,15 +110,52 @@ export async function fetchCarts() {
  * @returns {Promise<void>}
  */
 export async function putUsers(users) {
-  await updateJsonServer(usersUrl, await getSHA(usersUrl), users)
+  await putJsonServer(usersUrl, await getSHA(usersUrl), users)
 }
+
 /**
  * Update carts data on the server.
  *
- * @param {Array} carts - The array of user objects to update on the server.
+ * @param {Array} carts - The array of cart objects to update on the server.
  * @returns {Promise<void>}
  */
 export async function putCarts(carts) {
-  await updateJsonServer(cartUrl, await getSHA(cartUrl), carts)
+  await putJsonServer(cartUrl, await getSHA(cartUrl), carts)
 }
 
+/**
+ * Update the user's cart data if it exists or create a new cart with the data.
+ *
+ * @param {Object} cart - The cart object to update or create.
+ * @return {Promise<void>} A promise that resolves once the cart data is updated on the server.
+ */
+export async function putUserCart(cart) {
+  const user_id = getLoggedInUserId()
+  const carts = await fetchCarts()
+  const index = carts.findIndex(cart => cart.user_id === user_id);
+  if (index !== -1) {
+    carts[index].items = cart;
+  } else {
+    carts.push({
+      user_id: user_id,
+      items: cart
+    })
+  }
+  await putCarts(carts)
+}
+
+/**
+ * Fetches the cart items for the logged-in user.
+ *
+ * @return {Promise<Array>} The cart items for the logged-in user, or an empty array if the user has no cart.
+ */
+export async function fetchUserCart() {
+  const user_id = getLoggedInUserId()
+  const carts = await fetchCarts()
+  const index = carts.findIndex(cart => cart.user_id === user_id);
+  if (index !== -1) {
+    return carts[index].items
+  } else {
+    return []
+  }
+}
