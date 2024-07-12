@@ -1,11 +1,11 @@
 import {fetchCarts, fetchUsers} from "./HandleAPI.js";
 import {getLoggedInUserId} from "./handleAuthentication.js";
 
-export function handleCheckout() {
+async function handleCheckout() {
 
   let user_id = getLoggedInUserId()
-  let cart = fetchCarts().then((carts) => {
-    carts = carts.filter(cart => cart.user_id === user_id)
+  let cart = await fetchCarts().then((carts) => {
+    return carts.filter(cart => cart.user_id === user_id)
   })
   if (!Array.isArray(cart)) {
     cart = [cart]
