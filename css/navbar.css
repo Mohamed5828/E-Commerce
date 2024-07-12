@@ -50,12 +50,12 @@
 }
 
 .search-nav input {
-  background-color: #fff9f5;
+  background-color: #fff9f5 !important;
   padding: 0 0.75rem;
   border-radius: 20px;
 }
 .search-nav input.dark-mode {
-  background-color: #2f3e46;
+  background-color: #2f3e46 !important;
 }
 
 .search-nav button {

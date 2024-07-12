@@ -44,11 +44,11 @@
 }
 
 .search-nav input {
-  background-color: $light-bg;
+  background-color: $light-bg !important;
   padding: 0 $base-padding;
   border-radius: $base-border-radius;
   &.dark-mode {
-    background-color: $dark-bg;
+    background-color: $dark-bg !important;
   }
 }
 

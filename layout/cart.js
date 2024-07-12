@@ -9,6 +9,7 @@ export function initCart() {
   const cartContent = document.querySelector(".cart-content");
   const productsDOM = document.querySelector(".products-center");
   const openCartBtn = document.querySelector(".cart-btn");
+  const checkout = document.querySelector(".checkout");
 
   let cart = [];
   let buttonsDOM = [];
@@ -117,7 +118,10 @@ export function initCart() {
   closeCartBtn.addEventListener("click", closeCart);
   clearCartBtn.addEventListener("click", clearCart);
   openCartBtn.addEventListener("click", openCart);
-
+  checkout.addEventListener("click", (e) => {
+    e.stopPropagation;
+    checkoutCart();
+  });
   function populateCart(cart) {
     cart.forEach((item) => addToCart(item));
   }
@@ -168,6 +172,14 @@ export function initCart() {
 
   function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function checkoutCart() {
+    let date = new Date();
+    let year = date.toDateString();
+    let checkout = { [year]: cart };
+    console.log(checkout);
+    clearCart();
   }
 
   function updateButtons() {

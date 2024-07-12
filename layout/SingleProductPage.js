@@ -2,14 +2,14 @@ import { fetchData } from "../utils/FetchData.js";
 import { initCart } from "./cart.js";
 
 const body = document.body;
-let params = new URLSearchParams(window.location.search);
+let params = new URLSearchParams(location.search);
 let mainDiv = document.getElementById("main");
 let navbar = document.getElementById("navbar-container");
 let cart = document.getElementById("cart-container");
 async function main() {
   try {
     const { data, isLoading, isError } = await fetchData(
-      "https://dummyjson.com/products/1"
+      `https://dummyjson.com/products/${params.get("product")}`
     );
 
     if (isLoading) {
@@ -21,7 +21,7 @@ async function main() {
       mainDiv.innerHTML = "<p>Error loading product data.</p>";
       return;
     }
-    console.log(data);
+
     let currentImage = data.thumbnail;
 
     const reviewsHtml = data.reviews
@@ -72,6 +72,7 @@ async function main() {
               <ul class="lite-info-ul">
               <li class="lite-info-li">Brand: ${data.brand}</li>
               <li class="lite-info-li">SKU: ${data.sku}</li>
+              <li class="lite-info-li">Rating: ${data.rating}</li>
               <li class="lite-info-li"> Available: ${
                 data.availabilityStatus
               }</li>
@@ -88,7 +89,9 @@ async function main() {
               </ul>
             </div>
             <div class="price font-bold">Price: ${data.price} L.E.</div>
-            <button class="add-to-cart-btn" id="addToCartBtn" data-id=${1}>Add to cart</button>
+            <button class="add-to-cart-btn" id="addToCartBtn" data-id=${params.get(
+              "product"
+            )}>Add to cart</button>
           </div>
         </div>
         <div class="product-overview">
@@ -110,21 +113,17 @@ async function main() {
         </div>
       </div>`;
 
-    // document.querySelectorAll(".small-img-container").forEach((item) => {
-    //   item.addEventListener("click", (event) => {
-    //     currentImage = event.currentTarget.getAttribute("data-image");
-    //     document.getElementById("currentImage").src = currentImage;
-    //     document.querySelectorAll(".small-img-container").forEach((imgItem) => {
-    //       imgItem.classList.remove("active");
-    //     });
-    //     event.currentTarget.classList.add("active");
-    //   });
-    // });
+    document.querySelectorAll(".small-img-container").forEach((item) => {
+      item.addEventListener("click", (event) => {
+        currentImage = event.currentTarget.children[0].getAttribute("src");
+        document.getElementById("currentImage").src = currentImage;
+        document.querySelectorAll(".small-img-container").forEach((imgItem) => {
+          imgItem.classList.remove("active");
+        });
+        event.currentTarget.classList.add("active");
+      });
+    });
 
-    // document.getElementById("addToCartBtn").addEventListener("click", () => {
-    //   handleAddToCart();
-    //   toggleCart();
-    // });
     initCart();
   } catch (error) {
     console.error("Error in main function:", error);
