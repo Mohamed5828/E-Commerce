@@ -1,4 +1,4 @@
-import {getLoggedInUserId} from "./handleAuthentication";
+import {getLoggedInUserId} from "./handleAuthentication.js";
 
 /**
  * GitHub Repo Token
@@ -130,9 +130,10 @@ export async function putCarts(carts) {
  * @return {Promise<void>} A promise that resolves once the cart data is updated on the server.
  */
 export async function putUserCart(cart) {
+
   const user_id = getLoggedInUserId()
   const carts = await fetchCarts()
-  const index = carts.findIndex(cart => cart.user_id === user_id);
+  const index = carts.findIndex(c => c.user_id === user_id);
   if (index !== -1) {
     carts[index].items = cart;
   } else {

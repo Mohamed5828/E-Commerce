@@ -37,7 +37,7 @@ async function navbar() {
           </form>
           </div>
           <div class="cart-person">
-            <div class="profile-nav">
+            <div class="profile-nav" onclick="location.href = './profile.html'">
               <i class="fas fa-user"></i>
             </div>
             <div class="cart-btn">

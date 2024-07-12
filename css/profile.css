@@ -1,4 +1,9 @@
-.profile_orders section {
+.profile_orders section .order-card-item header, .profile_orders section .order-card-item footer {
+  display: flex;
+  align-items: center;
+}
+
+.profile_orders section .order-card-item, .profile_orders section {
   display: flex;
   flex-direction: column;
 }
@@ -12,12 +17,13 @@
 }
 
 .profile-main {
-  max-height: 98vh;
+  margin-top: calc(80px + 1.5rem);
+  height: calc(100vh - 80px - 1.5rem);
   overflow: hidden;
   display: flex;
 }
 .profile-main * {
-  padding: 0.75rem;
+  padding: 0.45rem;
 }
 .profile-main aside {
   display: flex;
@@ -48,7 +54,16 @@
   flex-grow: 1;
 }
 .profile_orders section .order-card-item {
-  display: flex;
   margin: 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.profile_orders section .order-card-item .order-item {
+  display: flex;
+  flex-direction: row;
+}
+.profile_orders section .order-card-item header {
+  justify-content: center;
+}
+.profile_orders section .order-card-item footer {
+  justify-content: space-between;
 }

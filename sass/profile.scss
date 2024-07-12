@@ -5,12 +5,13 @@
 @import "./gridSystem";
 
 .profile-main {
-  max-height: 98vh;
+  margin-top: calc(80px + 1.5rem);
+  height: calc(100vh - 80px - 1.5rem);
   overflow: hidden;
   display: flex;
 
   * {
-    padding: $base-padding;
+    padding: $base-padding*0.6;
   }
 
   aside {
@@ -49,9 +50,23 @@
 
     .order-card-item {
       //border-top: $base-border;
-      display: flex;
+      @extend %flex-column;
       margin: $base-margin;
       border: $base-border;
+      .order-item {
+        display: flex;
+        flex-direction: row;
+        //align-items: center;
+      }
+      header, footer {
+        @extend %flex-center;
+      }
+      header {
+        justify-content: center;
+      }
+      footer {
+        justify-content: space-between;
+      }
     }
   }
 
