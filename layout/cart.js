@@ -1,7 +1,6 @@
 import { fetchData } from "../utils/FetchData.js";
 
 export function initCart() {
-  const cartBtn = document.querySelector(".cart-btn");
   const closeCartBtn = document.querySelector(".close-cart");
   const clearCartBtn = document.querySelector(".clear-cart");
   const cartDOM = document.querySelector(".cart");
@@ -9,6 +8,7 @@ export function initCart() {
   const cartTotal = document.querySelector(".cart-total");
   const cartContent = document.querySelector(".cart-content");
   const productsDOM = document.querySelector(".products-center");
+  const openCartBtn = document.querySelector(".cart-btn");
 
   let cart = [];
   let buttonsDOM = [];
@@ -116,6 +116,7 @@ export function initCart() {
 
   closeCartBtn.addEventListener("click", closeCart);
   clearCartBtn.addEventListener("click", clearCart);
+  openCartBtn.addEventListener("click", openCart);
 
   function populateCart(cart) {
     cart.forEach((item) => addToCart(item));
@@ -188,5 +189,6 @@ export function initCart() {
   populateCart(fetchedCart);
   cart = fetchedCart;
   getAddToCartBtn();
+  console.log("loaded");
   updateButtons(); // Ensure button states are consistent on initialization
 }
