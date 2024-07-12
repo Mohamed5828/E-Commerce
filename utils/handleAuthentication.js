@@ -1,11 +1,4 @@
-/**
- * GitHub Repo Token
- */
-const token = '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';
-/**
- * GitHub API Server URL
- */
-const serverUrl = `https://api.github.com/repos/Ahmed-Rushdi/json-page-test/contents/auth_users.json`;
+import { fetchUsers, putUsers } from "./HandleAPI";
 
 /**
  * Generates a random HEX salt of the specified byte length.
@@ -42,7 +35,7 @@ export async function handleSignIn(event) {
   let password = form.password.value
   let remMe = form["rem-me"].checked
   try {
-    let users = await retrieveUsers()
+    let users = await fetchUsers()
 
     let user = users.find(user => user.email === email && user.hashed_password === hashPassword(password, user.salt))
     if (user) {
@@ -56,7 +49,7 @@ export async function handleSignIn(event) {
       document.getElementById("auth-err-msg-signin").style.display = "inline"
       form.reset()
     }
-  }catch (e){
+  } catch (e) {
     console.error(e)
     alert(e)
   }
@@ -79,10 +72,15 @@ export async function handleSignUp(event) {
   let email = (form.email.value).toLowerCase()
   let password = form.password.value
   try {
-    let users = await retrieveUsers()
+    let users = await fetchUsers()
     let salt = generateRandomSalt(16)
     let user = {
-      id: user_id_counter, name: name, email: email, salt: salt, hashed_password: hashPassword(password, salt)
+      id: user_id_counter,
+      name: name,
+      email: email,
+      salt: salt,
+      hashed_password: hashPassword(password, salt),
+      orders: []
     }
     if (users.find(user => user.email === email)) {
       document.getElementById("auth-err-msg-signup").style.display = "inline"
@@ -91,7 +89,7 @@ export async function handleSignUp(event) {
       document.getElementById("auth-err-msg-signup").style.display = "none"
       users.push(user)
       // localStorage.setItem("auth-users", JSON.stringify(users))
-      await updateJsonServer(await getSHA(), users)
+      await putUsers(users)
       localStorage.setItem("auth-user-id-counter", user_id_counter + 1)
       form.submit()
     }
@@ -119,82 +117,5 @@ export function getLoggedInUserId() {
 export function logout() {
   localStorage.removeItem("auth-user")
   sessionStorage.removeItem("auth-user")
-  location.href=`${location.hostname}/index.html`
+  location.href = `${location.hostname}/index.html`
 }
-
-/**
- * retrieve sha of JSON server file to be updated
- * @returns {Promise<*>} sha
- */
-async function getSHA() {
-
-  const response = await fetch(serverUrl, {
-    method: 'GET',
-    headers: {
-      'Authorization': `token ${token}`
-    }
-  });
-  if (!response.ok) {
-    throw new Error(`Network Error During Get SHA: ${response.status} ${response.statusText}`);
-  }
-  const data = await response.json();
-  return data.sha;
-
-}
-
-/**
- * Update the JSON server using GH API
- * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#update-a-file
- * @param sha sha of JSON server file to be updated
- * @param newContent JSON of new content to update file
- * @returns {Promise<void>}
- */
-async function updateJsonServer(sha, newContent) {
-  const body = {
-    message: "Update DB",
-    content: btoa(JSON.stringify(newContent)),
-    sha: sha
-  };
-
-  const response = await fetch(serverUrl, {
-    method: 'PUT',
-    headers: {
-      'Authorization': `token ${token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-  if (!response.ok) {
-    throw new Error(`Network Error During PUT Users Data: ${response.status} ${response.statusText}`);
-  }
-}
-
-/**
- * Get the JSON server data using GH API
- * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
- * @returns {Promise<any>}
- */
-async function fetchJsonServer() {
-  const response = await fetch(serverUrl, {
-    method: 'GET',
-    headers: {
-      'Authorization': `token ${token}`
-    }
-  });
-  if (!response.ok) {
-    throw new Error(`Network Error During GET Users Data: ${response.status} ${response.statusText}`);
-  }
-  return await response.json();
-}
-
-/**
- * fetch and extract user data
- * @returns {Promise<any|*[]>}
- */
-async function retrieveUsers() {
-  return JSON.parse(
-      atob((await fetchJsonServer()).content)
-  ) ?? []
-}
-
-// getSHA().then(sha => updateJsonServer(sha)).catch(error => console.error('Error:', error));
