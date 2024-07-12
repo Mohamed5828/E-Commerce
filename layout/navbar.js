@@ -49,7 +49,7 @@ async function navbar() {
               </div> 
              <div class="mobile-search">
       <form class="mobile-search-form">
-        <input type="search" placeholder="Search For a Product" />
+        <input id="mobile-search" type="search" placeholder="Search For a Product" />
         <button type="submit">
           <i class="fas fa-search"></i>
         </button>
@@ -61,3 +61,46 @@ async function navbar() {
   initCart();
 }
 navbar();
+
+document
+  .getElementById("newSearchInput")
+  .addEventListener("keyup", () => {
+    newSearchProducts(document.getElementById("newSearchInput").value)
+  });
+
+document.
+  getElementById("mobile-search")
+  .addEventListener("keyup", () => {
+    newSearchProducts(document.getElementById("mobile-search").value)
+  })
+
+function newSearchProducts(query) {
+//  const query = document.getElementById("newSearchInput").value;
+  fetch(`https://dummyjson.com/products/search?q=${query}`)
+    .then((res) => res.json())
+    .then((data) => {
+      displayProducts(data.products);
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+}
+
+//display function
+
+function displayProducts(products) {
+  const productList = document.getElementById("product-list");
+  productList.innerHTML = "";
+
+  products.forEach((product) => {
+    const productDiv = document.createElement("div");
+    productDiv.className = "product";
+    productDiv.innerHTML = `
+            <img src="${product.thumbnail}">
+            <h2>${product.title}</h2>
+            <p>${product.description}</p><br>
+            <p>Price: $${product.price}</p>
+        `;
+    productList.appendChild(productDiv);
+  });
+}
