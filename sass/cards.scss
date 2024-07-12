@@ -1,0 +1,48 @@
+@import "./navbar";
+.cards {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 30rem;
+    display: inline-block;
+    border: $base-border-thickness solid #fff;
+    border-radius: $base-border-radius * 0.5;
+    margin: auto;
+    :hover {
+      box-shadow: $base-box-shadow;
+      opacity: 1;
+      
+    }
+  }
+  .cards:before {
+    content: "";
+    display: block;
+    border-radius: $base-border-radius * 0.5;
+    opacity: 0;
+  }
+  .card-img{
+    position: relative;
+  }
+
+
+  .card-desc {
+    position: absolute;
+    letter-spacing: $cart-letter-spacing;
+    word-break: break-word;
+    display: grid;
+    justify-content: center;
+    z-index: 1;
+    color: white;
+    opacity: 0;
+    width: $widthAndHeightCards;
+    height: $widthAndHeightCards;
+  }
+  
+  .container {
+    padding: $base-padding;
+  }
+  .product {
+    padding: $base-padding;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($widthAndHeightCards, 1fr));
+    gap: 1rem;
+    margin: $base-margin;
+}
