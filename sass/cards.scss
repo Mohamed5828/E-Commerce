@@ -1,16 +1,30 @@
-@import "./navbar";
+@import "./variables";
+@import "./breakpoints";
+@import "./colors";
+
+body {
+  background-color: $light-bg;
+  color: $light-text;
+  transition: background-color 0.3s, color 0.3s;
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
+}
 .cards {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 30rem;
     display: inline-block;
     border: $base-border-thickness solid #fff;
     border-radius: $base-border-radius * 0.5;
     margin: auto;
-    :hover {
-      box-shadow: $base-box-shadow;
-      opacity: 1;
-      
-    }
+    width: $widthAndHeightCards;
+  }
+  .cards:hover:before {
+    opacity: 1;
+  }
+  .cards:hover .card-desc{
+    opacity: 1;
+    transform: translateY(0%);
   }
   .cards:before {
     content: "";
@@ -20,9 +34,11 @@
   }
   .card-img{
     position: relative;
+    border: $base-border-thickness solid #fff;
+    border-radius: $base-border-radius * 0.5;
+    width: $widthAndHeightCards;
+    height: $widthAndHeightCards - 1 ;
   }
-
-
   .card-desc {
     position: absolute;
     letter-spacing: $cart-letter-spacing;
@@ -30,12 +46,14 @@
     display: grid;
     justify-content: center;
     z-index: 1;
-    color: white;
+    color: $light-text;
     opacity: 0;
+    background: rgb(107, 114, 142,0.6);
+    border: $base-border-thickness solid #fff;
+    border-radius: $base-border-radius * 0.5;
     width: $widthAndHeightCards;
-    height: $widthAndHeightCards;
+    height: $widthAndHeightCards - 1 ;
   }
-  
   .container {
     padding: $base-padding;
   }
