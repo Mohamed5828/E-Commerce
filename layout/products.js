@@ -9,15 +9,19 @@ const fetchData = async (page, limit) => {
 
 const renderData = (data) => {
     let products = document.querySelector('.product');
-    products.innerHTML = data.map(item => `  <div class="card">    
-    <img src="${item.thumbnail}" alt="thumbnail" class="perent">
-    <div class="banner-content">
-      ${item.description}
-    </div>
-    <div class="container">
-      <h4>"${item.title}"</h4>
-      <p>${item.price} L.E.</p>
-    </div>
+    products.innerHTML = data.map(item => `  
+    <div class="cards">    
+        
+        
+    <p class="card-desc">${item.description}</p>
+        <img class="card-img" src="${item.thumbnail}" alt="thumbnail" >
+        
+
+        <div class="container">
+            <h4 class="card-title">"${item.title}"</h4>
+            <p class="card-title">${item.price} L.E.</p>
+        </div>
+
     </div>
 `).join('');
 };
