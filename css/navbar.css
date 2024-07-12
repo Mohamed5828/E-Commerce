@@ -1,0 +1,140 @@
+.nav-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.mobile-search-form button, .mobile-search-form, .mobile-search, .cart-person, .right-nav, .search-nav button, .search-nav form, .logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  background-color: #9cafaa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.nav-container.dark-mode {
+  background-color: yellow;
+}
+
+.logo {
+  padding: 0.75rem;
+  flex-grow: 4;
+}
+
+.logo img {
+  margin-right: 0.75rem;
+  max-width: 70px;
+}
+
+.search-nav {
+  background-color: #fff9f5;
+  border: 1px solid #000;
+  padding: 0 0.75rem;
+  border-radius: 20px;
+  display: none;
+}
+.search-nav.dark-mode {
+  background-color: #2f3e46;
+  border: 1px solid #fff;
+}
+
+.search-nav form {
+  height: 30px;
+  position: relative;
+}
+
+.search-nav input {
+  background-color: #fff9f5;
+  padding: 0 0.75rem;
+  border-radius: 20px;
+}
+.search-nav input.dark-mode {
+  background-color: #2f3e46;
+}
+
+.search-nav button {
+  cursor: pointer;
+  border: 0;
+  background-color: #fff9f5;
+  padding-left: 0.75rem;
+  border-left: 1px solid #000;
+}
+.search-nav button.dark-mode {
+  background-color: #2f3e46;
+  border-left: 1px solid #fff;
+}
+
+.right-nav {
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.cart-person {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+}
+
+.cart-person i {
+  padding: 0 0.375rem;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.mobile-search {
+  width: 100%;
+  background-color: #fff9f5;
+  padding: 0.75rem 2.25rem;
+  justify-content: center;
+  position: absolute;
+  top: 100px;
+  transition: all 0.3s ease 0s;
+}
+
+.mobile-search-form {
+  height: 40px;
+  position: relative;
+  background-color: #9cafaa;
+  max-width: calc(70vw + 40px);
+  border-radius: 40px;
+}
+
+.mobile-search-form input {
+  background-color: #9cafaa;
+  padding: 0 0.75rem;
+  border-radius: 20px;
+  width: 80vw;
+}
+.mobile-search-form input.dark-mode {
+  background-color: #2f3e46;
+}
+
+.mobile-search-form button {
+  cursor: pointer;
+  border: 0;
+  background-color: #9cafaa;
+  margin-right: 1.5rem;
+  border-left: 1px solid #9cafaa;
+}
+.mobile-search-form button.dark-mode {
+  background-color: yellow;
+  border-left: 1px solid yellow;
+}
+
+@media (min-width: 720px) {
+  .search-nav {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 720px) {
+  .mobile-search {
+    display: none;
+  }
+}

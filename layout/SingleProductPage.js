@@ -56,13 +56,13 @@ async function main() {
     mainDiv.innerHTML = `
       <div class="single-product-container">
         <div class="all-img-container">
+          <div class="normal-img-container">
+            <img src="${currentImage}" id="currentImage" alt="Current Image"/>
+          </div>
           <div class="alt-img-container">
             <ul class="image-ul">
               ${dataImages}
             </ul>
-          </div>
-          <div class="normal-img-container">
-            <img src="${currentImage}" id="currentImage" alt="Current Image"/>
           </div>
           <div class="title">
             <div class="border-element">

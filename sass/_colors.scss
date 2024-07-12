@@ -1,10 +1,13 @@
 //LIGHT
-$light-bg: #ddf2fd;
+$light-bg: #fff9f5;
 $light-text: #000000;
 $defaultWhite: #ffffff;
-$overviewText: #9bbec8;
-$productBorder: #164863;
-$oddReview: #ffffff;
+$overviewText: #d6dac8;
+$productBorder: #d6dac8;
+$oddReview: #fbf3d5;
+$light-nav-bg: #9cafaa;
+$light-border: #000;
+$light-cart-overlay: rgb(134 146 210 / 35%);
 //DARK
 $dark-bg: #2f3e46;
 $dark-text: #ffffff;
@@ -12,3 +15,6 @@ $defaultBlack: #000000;
 $overviewTextDark: #9bbec8;
 $productBorderDark: #164863;
 $oddReviewDark: #ffffff;
+$dark-nav-bg: yellow;
+$dark-border: #fff;
+$dark-cart-overlay: rgb(134 146 210 / 35%);

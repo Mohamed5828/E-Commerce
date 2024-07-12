@@ -1,0 +1,139 @@
+@import "./colors";
+@import "./variables";
+@import "./breakpoints";
+
+.nav-container {
+  @extend %flex-layout;
+  background-color: $light-nav-bg;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  &.dark-mode {
+    background-color: $dark-nav-bg;
+  }
+}
+
+.logo {
+  @extend %flex-center;
+  padding: $base-padding;
+  flex-grow: 4;
+}
+
+.logo img {
+  margin-right: $base-margin;
+  max-width: 70px;
+}
+
+.search-nav {
+  background-color: $light-bg;
+  border: 1px solid $light-border;
+  padding: 0 $base-padding;
+  border-radius: $base-border-radius;
+  display: none;
+  &.dark-mode {
+    background-color: $dark-bg;
+    border: 1px solid $dark-border;
+  }
+}
+
+.search-nav form {
+  height: 30px;
+  position: relative;
+  @extend %flex-center;
+}
+
+.search-nav input {
+  background-color: $light-bg;
+  padding: 0 $base-padding;
+  border-radius: $base-border-radius;
+  &.dark-mode {
+    background-color: $dark-bg;
+  }
+}
+
+.search-nav button {
+  cursor: pointer;
+  border: 0;
+  @extend %flex-center;
+  background-color: $light-bg;
+  padding-left: $base-padding;
+  border-left: 1px solid $light-border;
+
+  &.dark-mode {
+    background-color: $dark-bg;
+    border-left: 1px solid $dark-border;
+  }
+}
+
+.right-nav {
+  @extend %flex-center;
+  justify-content: space-between;
+  padding: 0 $base-padding * 2;
+}
+
+.cart-person {
+  @extend %flex-center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 $base-padding;
+}
+
+.cart-person i {
+  padding: 0 $base-padding * 0.5;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.mobile-search {
+  width: 100%;
+  background-color: $light-bg;
+  padding: $base-padding $base-padding * 3;
+  @extend %flex-center;
+  justify-content: center;
+  position: absolute;
+  top: 100px;
+  transition: $main-transition;
+}
+
+.mobile-search-form {
+  height: 40px;
+  position: relative;
+  @extend %flex-center;
+  background-color: $light-nav-bg;
+  max-width: calc(70vw + 40px);
+  border-radius: 40px;
+}
+.mobile-search-form input {
+  background-color: $light-nav-bg;
+  padding: 0 $base-padding;
+  border-radius: $base-border-radius;
+  width: 80vw;
+  &.dark-mode {
+    background-color: $dark-bg;
+  }
+}
+.mobile-search-form button {
+  cursor: pointer;
+  border: 0;
+  @extend %flex-center;
+  background-color: $light-nav-bg;
+  margin-right: $base-padding * 2;
+  border-left: 1px solid $light-nav-bg;
+
+  &.dark-mode {
+    background-color: $dark-nav-bg;
+    border-left: 1px solid $dark-nav-bg;
+  }
+}
+
+.search-nav {
+  @include md {
+    display: inline-block;
+  }
+}
+.mobile-search {
+  @include md {
+    display: none;
+  }
+}
