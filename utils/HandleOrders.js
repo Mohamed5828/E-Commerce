@@ -9,6 +9,10 @@ function handleCheckout() {
   })
   let users = fetchUsers().then(
     (users) => {
+      const index = users.findIndex(user => user.id === user_id);
+      if (index === -1) {
+        throw new Error(`FATAL: User not found: ${user_id}`);
+      }
       users[user_id].orders.push({
         date: Date.now(),
         items: cart

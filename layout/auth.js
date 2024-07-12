@@ -35,29 +35,4 @@ if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
   }
 
-//_______________________________________________________
-// LEAVE COMMENTED
-// =================
-// placeholder users:
-// [
-//   {
-//     "id": 0
-//     "name": "John Doe",
-//     "email": "johndoe@example.com",
-//     "password": "Password1"
-//   },
-//   {
-//     "id": 1,
-//     "name": "Jane Smith",
-//     "email": "janesmith@example.com",
-//     "password": "SecurePass123"
-//   },
-//   {
-//     "id": 2,
-//     "name": "Michael Brown",
-//     "email": "michaelbrown@example.com",
-//     "password": "Passw0rd!"
-//   }
-// ]
-
 
