@@ -14,7 +14,6 @@ body {
 .cards {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: inline-block;
-    border: $base-border-thickness solid #fff;
     border-radius: $base-border-radius * 0.5;
     margin: auto;
     width: $widthAndHeightCards;
@@ -64,3 +63,26 @@ body {
     gap: 1rem;
     margin: $base-margin;
 }
+
+
+
+
+// button
+.addtocart{
+  display:block;
+  padding:$base-padding;
+  border: 0px;
+  border-radius: $base-border-radius * 0.5;
+  position:relative;
+  background:$background;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform 0.1s;
+  z-index:1;
+  width: $widthAndHeightCards;
+
+}
+.addtocart:hover{
+  transform:scale(1.1);
+}
+

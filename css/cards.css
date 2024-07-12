@@ -11,7 +11,6 @@ body.dark-mode {
 .cards {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: inline-block;
-  border: 1px solid #fff;
   border-radius: 10px;
   margin: auto;
   width: 20rem;
@@ -67,4 +66,22 @@ body.dark-mode {
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
   margin: 0.75rem;
+}
+
+.addtocart {
+  display: block;
+  padding: 0.75rem;
+  border: 0px;
+  border-radius: 10px;
+  position: relative;
+  background: rgb(71, 78, 104);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.1s;
+  z-index: 1;
+  width: 20rem;
+}
+
+.addtocart:hover {
+  transform: scale(1.1);
 }
