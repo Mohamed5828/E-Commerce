@@ -1,19 +1,4 @@
-// //navbar samll
-// const navList = document.querySelector(".nav-list");
-
-// document.querySelector(".hamburger").onclick = () => {
-//   navList.classList.add("show");
-// };
-
-// document.querySelector(".close").onclick = () => {
-//   navList.classList.remove("show");
-// };
-
-// const body = document.body;
-// if (localStorage.getItem("theme") === "dark") {
-//   body.classList.add("dark-mode");
-// }
-import {renderData} from "./products.js";
+import { renderData } from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");
 
@@ -66,24 +51,23 @@ async function navbar() {
   document.getElementById("moon-icon").addEventListener("click", toggleTheme);
   document.getElementById("sun-icon").addEventListener("click", toggleTheme);
   
+  document.getElementById("newSearchInput").addEventListener("keyup", () => {
+      newSearchProducts(document.getElementById("newSearchInput").value);
+  });
+
+  document.getElementById("mobile-search-form").addEventListener("keyup", () => {
+    newSearchProducts(document.getElementById("mobile-search").value);
+});
+
   if (localStorage.getItem("theme") === "dark") {
-    document.querySelectorAll('*').forEach(function (element) {
-      element.classList.add("dark-mode");
-    });
-  } else {
-    document.querySelectorAll('*').forEach(function (element) {
-      element.classList.remove("dark-mode");
-    });
+    document.body.classList.add("dark-mode");
   }
 }
-
 navbar();
 
 function toggleTheme() {
-  document.querySelectorAll('*').forEach(function (element) {
-    element.classList.toggle("dark-mode");
-  });
-
+  document.body.classList.toggle("dark-mode");
+  
   // Save the style in local storage
   if (document.body.classList.contains("dark-mode")) {
     localStorage.setItem("theme", "dark");
@@ -92,36 +76,8 @@ function toggleTheme() {
   }
 }
 
-export let flag=false;
-//Searching
-document.getElementById("search-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const query = document.getElementById("newSearchInput").value;
-  flag=true
-  localStorage.setItem('key',query)
-  window.location.href = `products.html?q=${query}`;
-});
-
-document
-    .getElementById("mobile-search-form")
-    .addEventListener("submit", (event) => {
-      event.preventDefault();
-      const query = document.getElementById("mobile-search").value;
-      window.location.href = `products.html?query=${query}`;
-    });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get("query");
-
-  if (query) {
-    newSearchProducts(query);
-  }
-});
-
 export async function newSearchProducts(query) {
   try {
-    flag=true
     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
     const data = await res.json();
     renderData(data.products);
@@ -129,3 +85,90 @@ export async function newSearchProducts(query) {
     console.error("Error fetching products:", error);
   }
 }
+
+// export let flag=false;
+// //Searching
+// document.getElementById("search-form").addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const query = document.getElementById("newSearchInput").value;
+//   flag=true
+//   localStorage.setItem('key',query)
+//   window.location.href = `products.html?q=${query}`;
+// });
+
+// newSearchProducts(localStorage.getItem("key"))
+
+// document.getElementById("mobile-search-form").addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   flag=true
+//   const query = document.getElementById("mobile-search").value.trim();
+//   if (query) {
+//     window.location.href = `products.html?q=${query}`;
+//   }
+// });
+
+// // document
+// //   .getElementById("mobile-search-form")
+// //   .addEventListener("submit", (event) => {
+// //     event.preventDefault();
+// //     const query = document.getElementById("mobile-search").value;
+// //     window.location.href = `products.html?q=${query}`;
+// //     newSearchProducts(query)
+// //   });
+
+// // document.addEventListener("DOMContentLoaded", () => {
+// //   const urlParams = new URLSearchParams(window.location.search);
+// //   const query = urlParams.get("q");
+
+// //   if (query) {
+// //     newSearchProducts(document.getElementById("newSearchInput").value);
+// //   }
+// // });
+
+
+// // document.getElementById("searchForm").addEventListener("submit", (event) => {
+
+// //   event.preventDefault();
+// //   const query = document.getElementById("newSearchInput").value;
+// //   newSearchProducts(query);
+// // });
+
+// // document.getElementById("mobileSearchForm").addEventListener("submit", (event) => {
+// //   event.preventDefault();
+// //   const query = document.getElementById("mobileSearch").value;
+// //   newSearchProducts(query);
+// // });
+
+// // async function newSearchProducts(query) {
+// //   try {
+// //     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+// //     const data = await res.json();
+// //     renderData(data.products);
+// //   } catch (error) {
+// //     console.error("Error fetching products:", error);
+// //   }
+// // }
+
+// // document
+//   .getElementById("newSearchInput")
+//   .addEventListener("keyup", () => {
+//     newSearchProducts(document.getElementById("newSearchInput").value)
+//   });
+
+// document.
+//   getElementById("mobile-search")
+//   .addEventListener("keyup", () => {
+//     newSearchProducts(document.getElementById("mobile-search").value)
+//   })
+
+// function newSearchProducts(query) {
+// //  const query = document.getElementById("newSearchInput").value;
+//   fetch(`https://dummyjson.com/products/search?q=${query}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       renderData(data.products);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching products:", error);
+//     });
+// }
