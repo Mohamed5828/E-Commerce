@@ -9,8 +9,28 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link rel="stylesheet" href="./css/homepage.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/btns.css" />
   </head>
   <body>
+    <nav id="navbar"></nav>
+    <div id="cart-container">
+      <div class="cart-overlay">
+        <div class="cart">
+          <span class="close-cart">
+            <i class="fas fa-window-close"> </i>
+          </span>
+          <h2>Your Cart</h2>
+          <div class="cart-content"></div>
+          <div class="cart-footer">
+            <h3>Your Total: $ <span class="cart-total">0</span></h3>
+            <button class="clear-cart banner-btn">Clear Cart</button>
+            <button class="checkout banner-btn">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="hero">
       <div class="slideshow-container">
         <div class="slide fade">
@@ -34,7 +54,9 @@
       <div class="hero-content">
         <h1>Welcome to Our Shop</h1>
         <p>Discover our exclusive collection</p>
-        <a href="layout/products.html" class="cta-button" target="_blank">Shop Now</a>
+        <a href="layout/products.html" class="cta-button" target="_blank"
+          >Shop Now</a
+        >
       </div>
     </section>
 
@@ -135,6 +157,8 @@
       </div>
     </footer>
 
-    <script src="homepage.js"></script>
+    <script src="homepage.js" type="module"></script>
+    <script src="./layout/navbar.js" type="module"></script>
+    <script src="./layout/cart.js" type="module"></script>
   </body>
 </html>

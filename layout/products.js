@@ -1,53 +1,33 @@
-import { newSearchProducts } from "./navbar.js";
-import { flag } from "./navbar.js";
-
-let currentPage = 1;
-const itemsPerPage = 10;
 import { initCart } from "./cart.js";
 
-async function initializeCart() {
-  try {
-    initCart();
-  } catch (error) {
-    console.error("Error Initializing the Cart " + error);
-  }
-}
-const fetchData = async (page, limit, category = "all") => {
-  const skip = (page - 1) * limit;
-  const url =
-    category === "all"
-      ? `https://dummyjson.com/products?skip=${skip}&limit=${limit}`
-      : `https://dummyjson.com/products/category/${category}?skip=${skip}&limit=${limit}`;
-
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-};
+let currentPage = 1;
+export const itemsPerPage = 10;
+let selectedCategory = "all";
 
 export const renderData = (data) => {
   const products = document.querySelector(".product");
   products.innerHTML = data
     .map(
-      (item) => `  
+      (item) => `
     <div class="cards"> 
-        <a href="http://127.0.0.1:5500/layout/SingleProductPage.html?product=${item.id}">
+      <a href="http://127.0.0.1:5500/layout/SingleProductPage.html?product=${item.id}">
         <div class="card-desc">
-            <p >${item.description}</p>
+          <p>${item.description}</p>
         </div>
-            <img class="card-img" src="${item.thumbnail}" alt="thumbnail" >
-            <div class="container">
-            <h4 class="card-title">${item.title}</h4>
-            <p class="card-title">${item.price} L.E.</p>
-            </div>
-        </a>
+        <img class="card-img" src="${item.thumbnail}" alt="thumbnail">
+        <div class="container">
+          <h4 class="card-title">${item.title}</h4>
+          <p class="card-title">${item.price} L.E.</p>
+        </div>
+      </a>
       <button class="add-to-cart-btn" id="addToCartBtn" data-id=${item.id}>Add to cart</button>
-      </div>
-      `
+    </div>
+  `
     )
     .join("");
 };
 
-const updatePaginationControls = (page, totalPages) => {
+export const updatePaginationControls = (page, totalPages) => {
   document.getElementById("prev-btn").disabled = page === 1;
   document.getElementById("next-btn").disabled = page === totalPages;
 
@@ -62,37 +42,41 @@ const updatePaginationControls = (page, totalPages) => {
     }
     button.addEventListener("click", () => {
       currentPage = i;
+      updateURLParams();
       loadData(currentPage, selectedCategory);
     });
     pageButtonsContainer.appendChild(button);
   }
 };
 
-const loadData = async (page, category = "all") => {
-  const { products, total } = await fetchData(page, itemsPerPage, category);
+const loadData = async (page, category = "all", query = null) => {
+  const { products, total } = await fetchData(
+    page,
+    itemsPerPage,
+    category,
+    query
+  );
   const totalPages = Math.ceil(total / itemsPerPage);
   renderData(products);
   updatePaginationControls(page, totalPages);
 };
 
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
+const fetchData = async (page, limit, category = "all", query = null) => {
+  const skip = (page - 1) * limit;
+  let url;
 
-if (prevBtn) {
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      loadData(currentPage, selectedCategory);
-    }
-  });
-}
+  if (query) {
+    url = `https://dummyjson.com/products/search?q=${query}&skip=${skip}&limit=${limit}`;
+  } else if (category === "all") {
+    url = `https://dummyjson.com/products?skip=${skip}&limit=${limit}`;
+  } else {
+    url = `https://dummyjson.com/products/category/${category}?skip=${skip}&limit=${limit}`;
+  }
 
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    currentPage++;
-    loadData(currentPage, selectedCategory);
-  });
-}
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
 
 const loadCategories = async () => {
   const sidePanelContainer = document.getElementById("side-panel-container");
@@ -126,10 +110,12 @@ const loadCategories = async () => {
         event.preventDefault();
         const category = this.getAttribute("data-category");
         selectedCategory = category;
-        currentPage = 1; // Reset to first page when category changes
+        currentPage = 1;
+        updateURLParams();
         loadData(currentPage, category);
       });
     });
+
     initializeCart();
   } catch (error) {
     console.error(error);
@@ -137,14 +123,42 @@ const loadCategories = async () => {
   }
 };
 
-let selectedCategory = "all";
-
-loadCategories();
-
-if(flag==false){
-  loadData(currentPage, selectedCategory);
+async function initializeCart() {
+  try {
+    await initCart();
+  } catch (error) {
+    console.error("Error Initializing the Cart " + error);
+  }
 }
 
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
-}
+const updateURLParams = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (selectedCategory !== "all") {
+    urlParams.set("category", selectedCategory);
+  } else {
+    urlParams.delete("category");
+  }
+  urlParams.set("page", currentPage);
+  window.history.replaceState(null, null, `?${urlParams.toString()}`);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadCategories();
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get("query");
+  const category = urlParams.get("category");
+  const page = parseInt(urlParams.get("page")) || 1;
+
+  currentPage = page;
+  selectedCategory = category || "all";
+
+  if (query) {
+    loadData(currentPage, selectedCategory, query);
+  } else {
+    loadData(currentPage, selectedCategory);
+  }
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+});

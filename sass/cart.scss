@@ -10,7 +10,7 @@
   height: 100%;
   transition: $main-transition;
   background: rgb(240, 157, 81, 0.5);
-  z-index: 2;
+  z-index: 4;
   visibility: hidden;
   &.dark-mode {
     background: rgb(107, 114, 142, 0.5);
@@ -29,7 +29,7 @@
   transition: $main-transition;
   transform: translateX(100%);
   &.dark-mode {
-    background: #50577A;
+    background: #50577a;
   }
 }
 

@@ -93,34 +93,33 @@ body {
   transform: scale(1.1);
 }
 
+#side-panel-container li {
+  padding: $base-padding 0;
+}
 #side-panel-container {
-  margin-left: $base-product-margin-left;
+  margin: $base-margin $base-margin * 2;
   line-height: $line-height;
-  opacity: 0;
-}
-#side-panel-container:hover {
-  opacity: 1;
 }
 
-a { color: inherit; }
+a {
+  color: inherit;
+}
 
-.page-button{
+.page-button {
   color: black;
 
   padding: $base-padding $base-padding;
   text-decoration: none;
 }
 
-
-.page-button:hover{
-  background-color: #4CAF50;
+.page-button:hover {
+  background-color: #4caf50;
   color: white;
 }
 #page-buttons {
   display: inline-block;
 }
-#pagination-controls{
+#pagination-controls {
   margin: auto;
   text-align: center;
 }
-

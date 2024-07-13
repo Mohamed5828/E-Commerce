@@ -103,14 +103,13 @@ body.dark-mode {
   transform: scale(1.1);
 }
 
-#side-panel-container {
-  margin-left: 15px;
-  line-height: 35px;
-  opacity: 0;
+#side-panel-container li {
+  padding: 0.75rem 0;
 }
 
-#side-panel-container:hover {
-  opacity: 1;
+#side-panel-container {
+  margin: 0.75rem 1.5rem;
+  line-height: 35px;
 }
 
 a {
@@ -124,7 +123,7 @@ a {
 }
 
 .page-button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 

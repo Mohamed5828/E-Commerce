@@ -6,7 +6,7 @@
   height: 100%;
   transition: all 0.3s ease 0s;
   background: rgba(240, 157, 81, 0.5);
-  z-index: 2;
+  z-index: 4;
   visibility: hidden;
 }
 .cart-overlay.dark-mode {
@@ -27,7 +27,7 @@
   transform: translateX(100%);
 }
 .cart.dark-mode {
-  background: #50577A;
+  background: #50577a;
 }
 
 .showCart {
