@@ -31,7 +31,7 @@ export const renderData = (data) => {
             <p class="card-desc">${item.description}</p>
             <img class="card-img" src="${item.thumbnail}" alt="thumbnail" >
             <div class="container">
-            <h4 class="card-title">"${item.title}"</h4>
+            <h4 class="card-title">${item.title}</h4>
             <p class="card-title">${item.price} L.E.</p>
             </div>
         </a>
@@ -133,5 +133,3 @@ loadData(currentPage, selectedCategory);
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
-
-

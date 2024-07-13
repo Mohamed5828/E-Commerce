@@ -62,20 +62,16 @@ async function navbar() {
 }
 navbar();
 
-document
-  .getElementById("newSearchInput")
-  .addEventListener("keyup", () => {
-    newSearchProducts(document.getElementById("newSearchInput").value)
-  });
+document.getElementById("newSearchInput").addEventListener("keyup", () => {
+  newSearchProducts(document.getElementById("newSearchInput").value);
+});
 
-document.
-  getElementById("mobile-search")
-  .addEventListener("keyup", () => {
-    newSearchProducts(document.getElementById("mobile-search").value)
-  })
+document.getElementById("mobile-search").addEventListener("keyup", () => {
+  newSearchProducts(document.getElementById("mobile-search").value);
+});
 
 function newSearchProducts(query) {
-//  const query = document.getElementById("newSearchInput").value;
+  //  const query = document.getElementById("newSearchInput").value;
   fetch(`https://dummyjson.com/products/search?q=${query}`)
     .then((res) => res.json())
     .then((data) => {
@@ -84,6 +80,9 @@ function newSearchProducts(query) {
     .catch((error) => {
       console.error("Error fetching products:", error);
     });
+}
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
 }
 
 //display function
