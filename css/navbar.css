@@ -19,7 +19,7 @@
   z-index: 2;
 }
 .nav-container.dark-mode {
-  background-color: yellow;
+  background-color: #474E68;
 }
 
 .logo {
@@ -40,7 +40,7 @@
   display: none;
 }
 .search-nav.dark-mode {
-  background-color: #2f3e46;
+  background-color: #404258;
   border: 1px solid #fff;
 }
 
@@ -55,7 +55,7 @@
   border-radius: 20px;
 }
 .search-nav input.dark-mode {
-  background-color: #2f3e46 !important;
+  background-color: #404258 !important;
 }
 
 .search-nav button {
@@ -66,7 +66,7 @@
   border-left: 1px solid #000;
 }
 .search-nav button.dark-mode {
-  background-color: #2f3e46;
+  background-color: #404258;
   border-left: 1px solid #fff;
 }
 
@@ -112,7 +112,7 @@
   width: 80vw;
 }
 .mobile-search-form input.dark-mode {
-  background-color: #2f3e46;
+  background-color: #404258;
 }
 
 .mobile-search-form button {
@@ -123,8 +123,8 @@
   border-left: 1px solid #9cafaa;
 }
 .mobile-search-form button.dark-mode {
-  background-color: yellow;
-  border-left: 1px solid yellow;
+  background-color: #474E68;
+  border-left: 1px solid #474E68;
 }
 
 @media (min-width: 720px) {

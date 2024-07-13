@@ -9,6 +9,9 @@
   z-index: 2;
   visibility: hidden;
 }
+.cart-overlay.dark-mode {
+  background: rgba(107, 114, 142, 0.5);
+}
 
 .cart {
   position: fixed;
@@ -22,6 +25,9 @@
   padding: 1.5rem;
   transition: all 0.3s ease 0s;
   transform: translateX(100%);
+}
+.cart.dark-mode {
+  background: #50577A;
 }
 
 .showCart {

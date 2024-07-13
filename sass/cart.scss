@@ -12,6 +12,9 @@
   background: rgb(240, 157, 81, 0.5);
   z-index: 2;
   visibility: hidden;
+  &.dark-mode {
+    background: rgb(107, 114, 142, 0.5);
+  }
 }
 .cart {
   position: fixed;
@@ -25,6 +28,9 @@
   padding: $base-padding * 2;
   transition: $main-transition;
   transform: translateX(100%);
+  &.dark-mode {
+    background: #50577A;
+  }
 }
 
 .showCart {

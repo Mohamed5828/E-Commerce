@@ -52,11 +52,11 @@ export function populateOrders(section) {
         orders.reverse();
         // console.log(orders)
         orders.forEach((order) => {
-          console.log(order.items.items);
+          // console.log(order.items.items);
           let orderItems = "";
           let orderTotal = 0;
           order.items.forEach((item) => {
-            console.log(item);
+            // console.log(item);
             orderItems += `<div class="order-item">
               <img src="${item.thumbnail}" alt="Loading item">
               <article>

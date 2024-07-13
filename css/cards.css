@@ -9,7 +9,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 body.dark-mode {
-  background-color: #2f3e46;
+  background-color: #404258;
   color: #ffffff;
 }
 

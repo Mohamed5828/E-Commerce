@@ -50,9 +50,9 @@ body {
     }
 
     label {
-        margin-bottom: $base-margin * 0.5;
+        //margin-bottom: $base-margin * 0.5;
 
-      //@extend %label;
+      @extend %label;
     }
 
     input {

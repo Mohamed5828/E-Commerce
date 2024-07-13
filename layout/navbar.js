@@ -13,7 +13,7 @@
 // if (localStorage.getItem("theme") === "dark") {
 //   body.classList.add("dark-mode");
 // }
-import { renderData } from "./products.js";
+import {renderData} from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");
 
@@ -70,14 +70,22 @@ async function navbar() {
   });
 
   if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
+    document.querySelectorAll('*').forEach(function (element) {
+      element.classList.add("dark-mode");
+    });
+  } else {
+    document.querySelectorAll('*').forEach(function (element) {
+      element.classList.remove("dark-mode");
+    });
   }
 }
 
 navbar();
 
 function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
+  document.querySelectorAll('*').forEach(function (element) {
+    element.classList.toggle("dark-mode");
+  });
 
   // Save the style in local storage
   if (document.body.classList.contains("dark-mode")) {
@@ -95,12 +103,12 @@ document.getElementById("searchForm").addEventListener("submit", (event) => {
 });
 
 document
-  .getElementById("mobileSearchForm")
-  .addEventListener("submit", (event) => {
-    event.preventDefault();
-    const query = document.getElementById("mobileSearch").value;
-    window.location.href = `products.html?query=${query}`;
-  });
+    .getElementById("mobileSearchForm")
+    .addEventListener("submit", (event) => {
+      event.preventDefault();
+      const query = document.getElementById("mobileSearch").value;
+      window.location.href = `products.html?query=${query}`;
+    });
 
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
