@@ -17,16 +17,22 @@ export async function handleCheckout() {
   }
   await fetchUsers().then((users) => {
     const index = users.findIndex((user) => user.id === user_id);
+    // console.log("User index, " + index);
     if (index === -1) {
       throw new Error(`FATAL: User not found: ${user_id}`);
     }
     users[index].orders.push({
       date: new Date().toLocaleString(),
       items: cart,
+    })
+    // console.log("User orders, " + JSON.stringify(users[index].orders));
+    // console.log("Users, " + JSON.stringify(users))
+    // console.log("Carts, " + JSON.stringify(carts))
+    // console.log("Cart idx, " + cartIdx)
+    putUsers(users).then(() => {
+      carts.splice(cartIdx, 1);
+      putCarts(carts);
     });
-    putUsers(users);
-    carts.splice(cartIdx, 1);
-    putCarts(carts);
   });
 }
 

@@ -1,9 +1,8 @@
-import { getLoggedInUserId } from "./handleAuthentication.js";
-
+import {getLoggedInUserId} from "./handleAuthentication.js";
 /**
  * GitHub Repo Token
  */
-const token = "";
+const token = "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";
 /**
  * GitHub API Server URL
  */
@@ -25,15 +24,19 @@ async function getSHA(url) {
   });
   if (!response.ok) {
     throw new Error(
-      `Network Error During Get SHA: ${response.status} ${response.statusText}`
+        `Network Error During Get SHA: ${response.status} ${response.statusText}`
     );
   }
   const data = await response.json();
   return data.sha;
 }
 
+// let putJsonServerLock = Promise.resolve();
+// let counter = 0
+
 /**
- * Update the JSON server using GH API
+ * Update the JSON server using GH API PUT
+ * This function is locked until the previous update is done
  * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#update-a-file
  * @param url url of json server
  * @param sha sha of JSON server file to be updated
@@ -46,7 +49,9 @@ async function putJsonServer(url, sha, newContent) {
     content: btoa(JSON.stringify(newContent)),
     sha: sha,
   };
-
+  // putJsonServerLock = putJsonServerLock.then(async () => {
+  // console.log(counter++)
+  // console.log("here")
   const response = await fetch(url, {
     method: "PUT",
     headers: {
@@ -55,11 +60,19 @@ async function putJsonServer(url, sha, newContent) {
     },
     body: JSON.stringify(body),
   });
+  console.log("done with response status", response.status)
+  // if (response.status === 409) {
+  //   await new Promise((resolve) => setTimeout(resolve, 1000))
+  //   const newSha = await getSHA(url);
+  //   return putJsonServer(url, newSha, newContent);
+  // }
   if (!response.ok) {
-    throw new Error(
-      `Network Error During PUT Users Data: ${response.status} ${response.statusText}`
+    console.error(
+        `Network Error During PUT ${url} Data: ${response.status} ${response.statusText}`
     );
   }
+  // return putJsonServerLock;
+  // });
 }
 
 /**
@@ -77,7 +90,7 @@ async function fetchJsonServer(url) {
   });
   if (!response.ok) {
     throw new Error(
-      `Network Error During GET Users Data: ${response.status} ${response.statusText}`
+        `Network Error During GET Users Data: ${response.status} ${response.statusText}`
     );
   }
   return await response.json();
