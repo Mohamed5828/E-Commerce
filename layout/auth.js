@@ -1,15 +1,15 @@
-import {handleSignUp, handleSignIn} from "../utils/handleAuthentication.js";
+import { handleSignUp, handleSignIn } from "../utils/handleAuthentication.js";
 
 document
-    .getElementById("signin-tab")
-    .addEventListener("click", switchTabSignIn);
+  .getElementById("signin-tab")
+  .addEventListener("click", switchTabSignIn);
 document
-    .getElementById("signup-tab")
-    .addEventListener("click", switchTabSignUp);
+  .getElementById("signup-tab")
+  .addEventListener("click", switchTabSignUp);
 document.getElementById("signin-form").addEventListener("submit", handleSignIn);
 document.getElementById("signup-form").addEventListener("submit", handleSignUp);
 document.querySelector(".close-auth").addEventListener("click", () => {
-  window.history.go(-2);
+  location.href = `../homepage.html`;
 });
 
 /**
@@ -17,11 +17,11 @@ document.querySelector(".close-auth").addEventListener("click", () => {
  */
 function switchTabSignIn() {
   document
-      .getElementById("signin-div")
-      .classList.replace("hidden-container", "shown-container");
+    .getElementById("signin-div")
+    .classList.replace("hidden-container", "shown-container");
   document
-      .getElementById("signup-div")
-      .classList.replace("shown-container", "hidden-container");
+    .getElementById("signup-div")
+    .classList.replace("shown-container", "hidden-container");
   document.title = "Sign in";
   document.getElementById("auth-err-msg-signin").style.display = "none";
   document.getElementById("signin-tab").classList.add("selected-tab");
@@ -33,11 +33,11 @@ function switchTabSignIn() {
  */
 function switchTabSignUp() {
   document
-      .getElementById("signin-div")
-      .classList.replace("shown-container", "hidden-container");
+    .getElementById("signin-div")
+    .classList.replace("shown-container", "hidden-container");
   document
-      .getElementById("signup-div")
-      .classList.replace("hidden-container", "shown-container");
+    .getElementById("signup-div")
+    .classList.replace("hidden-container", "shown-container");
   document.title = "Sign up";
   document.getElementById("auth-err-msg-signup").style.display = "none";
   document.getElementById("signup-tab").classList.add("selected-tab");
@@ -46,7 +46,7 @@ function switchTabSignUp() {
 
 if (localStorage.getItem("theme") === "dark") {
   // document.body.classList.add("dark-mode");
-  document.querySelectorAll('*').forEach(function (element) {
+  document.querySelectorAll("*").forEach(function (element) {
     document.body.classList.toggle("dark-mode");
     element.classList.toggle("dark-mode");
   });
