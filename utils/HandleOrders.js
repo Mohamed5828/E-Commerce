@@ -1,4 +1,4 @@
-import {fetchCarts, fetchUsers} from "./HandleAPI.js";
+import {fetchCarts, fetchUsers, putUsers} from "./HandleAPI.js";
 import {getLoggedInUserId} from "./handleAuthentication.js";
 
 async function handleCheckout() {
@@ -10,7 +10,7 @@ async function handleCheckout() {
   if (!Array.isArray(cart)) {
     cart = [cart]
   }
-  let users = fetchUsers().then(
+  await fetchUsers().then(
     (users) => {
       const index = users.findIndex(user => user.id === user_id);
       if (index === -1) {
@@ -20,6 +20,7 @@ async function handleCheckout() {
         date: new Date().toLocaleString(),
         items: cart
       })
+      putUsers(users)
     }
   )
 
