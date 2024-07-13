@@ -1,27 +1,35 @@
-import {fetchCarts, fetchUsers, putUsers} from "./HandleAPI.js";
+import {fetchCarts, fetchUsers, putCarts, putUsers} from "./HandleAPI.js";
 import {getLoggedInUserId} from "./handleAuthentication.js";
 
 async function handleCheckout() {
 
   let user_id = getLoggedInUserId()
-  let cart = await fetchCarts().then((carts) => {
-    return carts.filter(cart => cart.user_id === user_id)
-  })
+  if (user_id === -1) {
+    throw new Error(`FATAL: User not found: ${user_id}`);
+  }
+  let carts = await fetchCarts()
+  const cartIdx = carts.findIndex(cart => cart.user_id === user_id)
+  if (cartIdx === -1) {
+    throw new Error(`FATAL: Cart not found: ${user_id}`);
+  }
+  let cart = carts[cartIdx].items
   if (!Array.isArray(cart)) {
     cart = [cart]
   }
   await fetchUsers().then(
-    (users) => {
-      const index = users.findIndex(user => user.id === user_id);
-      if (index === -1) {
-        throw new Error(`FATAL: User not found: ${user_id}`);
+      (users) => {
+        const index = users.findIndex(user => user.id === user_id);
+        if (index === -1) {
+          throw new Error(`FATAL: User not found: ${user_id}`);
+        }
+        users[index].orders.push({
+          date: new Date().toLocaleString(),
+          items: cart
+        })
+        putUsers(users)
+        carts.splice(cartIdx, 1)
+        putCarts(carts)
       }
-      users[index].orders.push({
-        date: new Date().toLocaleString(),
-        items: cart
-      })
-      putUsers(users)
-    }
   )
 
 
@@ -43,10 +51,13 @@ export function populateOrders(section) {
   fetchOrders().then(
       (orders) => {
         orders.reverse()
+        // console.log(orders)
         orders.forEach(order => {
+          console.log(order.items.items)
           let orderItems = ""
           let orderTotal = 0
-          order.forEach(item => {
+          order.items.forEach(item => {
+            console.log(item)
             orderItems += `<div class="order-item">
               <img src="${item.thumbnail}" alt="Loading item">
               <article>
@@ -58,7 +69,7 @@ export function populateOrders(section) {
             </div>`
             orderTotal += parseFloat(item.price)
           })
-          section.append(`
+          section.innerHTML += `
             <div class="order-card-item">
               <header>
                 <p>Order Date ${order.date}</p>
@@ -71,7 +82,7 @@ export function populateOrders(section) {
                 <p><b>Order Total:</b>${orderTotal}</p>
               </footer>
             </div>
-          `)
+          `
         })
       }
   ).catch((e) => console.error(e))

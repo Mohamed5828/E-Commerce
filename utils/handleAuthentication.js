@@ -36,7 +36,8 @@ export async function handleSignIn(event) {
   let remMe = form["rem-me"].checked
   try {
     let users = await fetchUsers()
-
+    console.log(users[0])
+    console.log(hashPassword(password, users[0].salt))
     let user = users.find(user => user.email === email && user.hashed_password === hashPassword(password, user.salt))
     if (user) {
       if (remMe) {
@@ -67,7 +68,7 @@ export async function handleSignUp(event) {
   let form = event.target
   event.preventDefault()
 
-  let user_id_counter = JSON.parse(localStorage.getItem("auth-user-id-counter")) ?? 0
+  let user_id_counter = await fetchUsers().then((users) => users.length)
   let name = form.uname.value
   let email = (form.email.value).toLowerCase()
   let password = form.password.value
@@ -90,7 +91,7 @@ export async function handleSignUp(event) {
       users.push(user)
       // localStorage.setItem("auth-users", JSON.stringify(users))
       await putUsers(users)
-      localStorage.setItem("auth-user-id-counter", user_id_counter + 1)
+      // localStorage.setItem("auth-user-id-counter", user_id_counter + 1)
       form.submit()
     }
   } catch (e) {
@@ -117,5 +118,5 @@ export function getLoggedInUserId() {
 export function logout() {
   localStorage.removeItem("auth-user")
   sessionStorage.removeItem("auth-user")
-  location.href = `${location.hostname}/index.html`
+  location.href = `../index.html`
 }

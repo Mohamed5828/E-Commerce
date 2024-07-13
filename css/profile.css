@@ -26,15 +26,21 @@
   padding: 0.45rem;
 }
 .profile-main aside {
+  max-width: 250px;
   display: flex;
   flex-direction: column;
+  align-content: center;
 }
 .profile-main aside img {
-  max-width: 200px;
   border-radius: 50%;
 }
 .profile-main aside button {
   margin-top: auto;
+}
+.profile-main aside p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .profile_orders {
