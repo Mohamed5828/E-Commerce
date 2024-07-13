@@ -6,6 +6,7 @@ let params = new URLSearchParams(location.search);
 let mainDiv = document.getElementById("main");
 let navbar = document.getElementById("navbar-container");
 let cart = document.getElementById("cart-container");
+console.log(navbar);
 async function main() {
   try {
     const { data, isLoading, isError } = await fetchData(

@@ -1,4 +1,5 @@
 import { fetchData } from "../utils/FetchData.js";
+import { putCarts } from "../utils/HandleAPI.js";
 
 export function initCart() {
   const closeCartBtn = document.querySelector(".close-cart");
@@ -171,7 +172,7 @@ export function initCart() {
   }
 
   function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    putCarts(cart);
   }
 
   function checkoutCart() {
@@ -196,7 +197,7 @@ export function initCart() {
     });
   }
 
-  const fetchedCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const fetchedCart = fetchCarts() || [];
   calculateCartValues(fetchedCart);
   populateCart(fetchedCart);
   cart = fetchedCart;

@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>products</title>
     <link
-    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="../css/home.css" />
-  <link rel="stylesheet" href="../css/cards.css" />
-</head>
-<body>
-    
-
-        <!-- start card  -->
-        <div class="product">
-
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/cards.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+  </head>
+  <body>
+    <nav id="navbar"></nav>
+    <div id="cart-container">
+      <div class="cart-overlay">
+        <div class="cart">
+          <span class="close-cart">
+            <i class="fas fa-window-close"> </i>
+          </span>
+          <h2>Your Cart</h2>
+          <div class="cart-content"></div>
+          <div class="cart-footer">
+            <h3>Your Total: $ <span class="cart-total">0</span></h3>
+            <button class="clear-cart banner-btn">Clear Cart</button>
+            <button class="checkout banner-btn">Checkout</button>
+          </div>
         </div>
-        <!-- end card  -->
+      </div>
+    </div>
+    <div id="side-panel-container"></div>
+    <!-- start card  -->
 
-        <!-- start pagination  -->
-        <div id="data-container"></div>
-        <div id="pagination-controls">
-            <button id="prev-btn">Previous</button>
-              <span id="page-buttons"></span>
-            <button id="next-btn">Next</button>
-        </div>
-        <!-- end pagination  -->
+    <div class="product"></div>
+    <!-- end card  -->
 
-        <button id="theme-toggle">Toggle Theme</button>
-    
-        <h1>HELLO WORLD</h1>
-        <script src="../app.js"></script>
-        <script src="products.js"></script>
-</body>
+    <!-- start pagination  -->
+    <div id="data-container"></div>
+    <div id="pagination-controls">
+      <button id="prev-btn">Previous</button>
+      <span id="page-buttons"></span>
+      <button id="next-btn">Next</button>
+    </div>
+    <!-- end pagination  -->
+
+    <script src="products.js" type="module"></script>
+    <script src="./navbar.js" type="module"></script>
+    <script src="cart.js" type="module"></script>
+    <script src="../app.js" type="module"></script>
+
+    <button id="theme-toggle">Toggle Theme</button>
+  </body>
 </html>
