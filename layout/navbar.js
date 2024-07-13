@@ -25,14 +25,15 @@ async function navbar() {
     </div>
     <div class="right-nav">
       <div class="search-nav">
-        <form class="search-form">
+        <form class="search-form" id="search-form">
           <input
             class="new-search-input"
             id="newSearchInput"
             type="search"
             placeholder="Search For a Product"
           />
-          <button type="submit">
+          <button id="submit-btn"
+          type="submit">
             <i class="fas fa-search"></i>
           </button>
         </form>
@@ -52,7 +53,7 @@ async function navbar() {
     </div>
   </div> 
   <div class="mobile-search">
-    <form class="mobile-search-form">
+    <form class="mobile-search-form" id="mobile-search-form">
       <input id="mobile-search" type="search" placeholder="Search For a Product" />
       <button type="submit">
         <i class="fas fa-search"></i>
@@ -61,14 +62,10 @@ async function navbar() {
   </div>`;
 
   navbarContainer.innerHTML = navbarData;
-
+  
   document.getElementById("moon-icon").addEventListener("click", toggleTheme);
   document.getElementById("sun-icon").addEventListener("click", toggleTheme);
-
-  document.getElementById("newSearchInput").addEventListener("keyup", () => {
-    newSearchProducts(document.getElementById("newSearchInput").value);
-  });
-
+  
   if (localStorage.getItem("theme") === "dark") {
     document.querySelectorAll('*').forEach(function (element) {
       element.classList.add("dark-mode");
@@ -95,11 +92,14 @@ function toggleTheme() {
   }
 }
 
+export let flag=false;
 //Searching
-document.getElementById("searchForm").addEventListener("submit", (event) => {
+document.getElementById("search-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const query = document.getElementById("newSearchInput").value;
-  window.location.href = `products.html?query=${query}`;
+  flag=true
+  localStorage.setItem('key',query)
+  window.location.href = `products.html?q=${query}`;
 });
 
 document
@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function newSearchProducts(query) {
   try {
+    flag=true
     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
     const data = await res.json();
     renderData(data.products);
@@ -128,50 +129,3 @@ async function newSearchProducts(query) {
     console.error("Error fetching products:", error);
   }
 }
-
-// document.getElementById("searchForm").addEventListener("submit", (event) => {
-
-//   event.preventDefault();
-//   const query = document.getElementById("newSearchInput").value;
-//   newSearchProducts(query);
-// });
-
-// document.getElementById("mobileSearchForm").addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   const query = document.getElementById("mobileSearch").value;
-//   newSearchProducts(query);
-// });
-
-// async function newSearchProducts(query) {
-//   try {
-//     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-//     const data = await res.json();
-//     renderData(data.products);
-//   } catch (error) {
-//     console.error("Error fetching products:", error);
-//   }
-// }
-
-// document
-//   .getElementById("newSearchInput")
-//   .addEventListener("keyup", () => {
-//     newSearchProducts(document.getElementById("newSearchInput").value)
-//   });
-
-// document.
-//   getElementById("mobile-search")
-//   .addEventListener("keyup", () => {
-//     newSearchProducts(document.getElementById("mobile-search").value)
-//   })
-
-// function newSearchProducts(query) {
-// //  const query = document.getElementById("newSearchInput").value;
-//   fetch(`https://dummyjson.com/products/search?q=${query}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       renderData(data.products);
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching products:", error);
-//     });
-// }
