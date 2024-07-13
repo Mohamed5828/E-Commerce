@@ -85,3 +85,89 @@ function toggleTheme() {
 }
 
 document.addEventListener("DOMContentLoaded", renderNavbar);
+
+// export let flag=false;
+// //Searching
+// document.getElementById("search-form").addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const query = document.getElementById("newSearchInput").value;
+//   flag=true
+//   localStorage.setItem('key',query)
+//   window.location.href = `products.html?q=${query}`;
+// });
+
+// newSearchProducts(localStorage.getItem("key"))
+
+// document.getElementById("mobile-search-form").addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   flag=true
+//   const query = document.getElementById("mobile-search").value.trim();
+//   if (query) {
+//     window.location.href = `products.html?q=${query}`;
+//   }
+// });
+
+// // document
+// //   .getElementById("mobile-search-form")
+// //   .addEventListener("submit", (event) => {
+// //     event.preventDefault();
+// //     const query = document.getElementById("mobile-search").value;
+// //     window.location.href = `products.html?q=${query}`;
+// //     newSearchProducts(query)
+// //   });
+
+// // document.addEventListener("DOMContentLoaded", () => {
+// //   const urlParams = new URLSearchParams(window.location.search);
+// //   const query = urlParams.get("q");
+
+// //   if (query) {
+// //     newSearchProducts(document.getElementById("newSearchInput").value);
+// //   }
+// // });
+
+// // document.getElementById("searchForm").addEventListener("submit", (event) => {
+
+// //   event.preventDefault();
+// //   const query = document.getElementById("newSearchInput").value;
+// //   newSearchProducts(query);
+// // });
+
+// // document.getElementById("mobileSearchForm").addEventListener("submit", (event) => {
+// //   event.preventDefault();
+// //   const query = document.getElementById("mobileSearch").value;
+// //   newSearchProducts(query);
+// // });
+
+// // async function newSearchProducts(query) {
+// //   try {
+// //     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+// //     const data = await res.json();
+// //     renderData(data.products);
+// //   } catch (error) {
+// //     console.error("Error fetching products:", error);
+// //   }
+// // }
+
+// // document
+//   .getElementById("newSearchInput")
+//   .addEventListener("keyup", () => {
+//     newSearchProducts(document.getElementById("newSearchInput").value)
+//   });
+
+// document.
+//   getElementById("mobile-search")
+//   .addEventListener("keyup", () => {
+//     newSearchProducts(document.getElementById("mobile-search").value)
+//   })
+
+// function newSearchProducts(query) {
+// //  const query = document.getElementById("newSearchInput").value;
+//   fetch(`https://dummyjson.com/products/search?q=${query}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       renderData(data.products);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching products:", error);
+//     });
+// }
