@@ -21,7 +21,7 @@ const fetchData = async (page, limit, category = "all") => {
   return data;
 };
 
-const renderData = (data) => {
+export const renderData = (data) => {
   const products = document.querySelector(".product");
   products.innerHTML = data
     .map(
@@ -133,3 +133,5 @@ loadData(currentPage, selectedCategory);
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
+
+

@@ -14,6 +14,7 @@
 //   body.classList.add("dark-mode");
 // }
 import { initCart } from "./cart.js";
+import { renderData } from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");
 async function navbar() {
@@ -78,7 +79,7 @@ function newSearchProducts(query) {
   fetch(`https://dummyjson.com/products/search?q=${query}`)
     .then((res) => res.json())
     .then((data) => {
-      displayProducts(data.products);
+      renderData(data.products);
     })
     .catch((error) => {
       console.error("Error fetching products:", error);
@@ -87,19 +88,19 @@ function newSearchProducts(query) {
 
 //display function
 
-function displayProducts(products) {
-  const productList = document.getElementById("product-list");
-  productList.innerHTML = "";
+// function displayProducts(products) {
+//   const productList = document.getElementById("product-list");
+//   productList.innerHTML = "";
 
-  products.forEach((product) => {
-    const productDiv = document.createElement("div");
-    productDiv.className = "product";
-    productDiv.innerHTML = `
-            <img src="${product.thumbnail}">
-            <h2>${product.title}</h2>
-            <p>${product.description}</p><br>
-            <p>Price: $${product.price}</p>
-        `;
-    productList.appendChild(productDiv);
-  });
-}
+//   products.forEach((product) => {
+//     const productDiv = document.createElement("div");
+//     productDiv.className = "product";
+//     productDiv.innerHTML = `
+//             <img src="${product.thumbnail}">
+//             <h2>${product.title}</h2>
+//             <p>${product.description}</p><br>
+//             <p>Price: $${product.price}</p>
+//         `;
+//     productList.appendChild(productDiv);
+//   });
+// }
