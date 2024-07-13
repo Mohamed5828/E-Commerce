@@ -1,0 +1,268 @@
+body {
+  margin: 0;
+  font-family: "Arial, sans-serif";
+  color: #333;
+  background-color: #FBF3D5;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+}
+
+.slide img {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 3s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #9CAFAA;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.categories {
+  padding: 2.5rem;
+  text-align: center;
+  background-color: #FBF3D5;
+  margin-top: 2.5rem;
+}
+
+.categories h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.categories-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+  gap: 20px;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 84%;
+}
+
+.categories-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  background-color: #9CAFAA;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 0 0 auto;
+  min-width: 200px;
+  scroll-snap-align: start;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+}
+
+.features {
+  background-color: #D6DAC8;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.features > div img {
+  width: 5rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.happy-customers {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.happy-customers h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.containercustomers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.customer-card {
+  display: inline-block;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: auto;
+  width: 20rem;
+}
+
+.customer-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.footer {
+  background-color: #EFBC9B;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: left;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1 1 200px;
+  margin: 20px;
+}
+
+.footer h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.footer p,
+.footer ul,
+.footer li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links ul {
+  padding-left: 20px;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #ccc;
+}
+
+.footer-contact ul {
+  padding-left: 20px;
+}
