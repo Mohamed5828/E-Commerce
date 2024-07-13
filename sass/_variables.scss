@@ -1,7 +1,7 @@
 @use "sass:math";
-$widthAndHeightCards:20rem;
-$background:rgb(71, 78, 104);
-$line-height:2.5;
+$widthAndHeightCards: 20rem;
+$background: rgb(71, 78, 104);
+$line-height: 2.5;
 //Variables
 $base-padding: 0.75rem;
 $base-margin: 0.75rem;
@@ -107,8 +107,8 @@ $navbar-margin: 130px;
 %auth-form {
   @extend %flex-column;
   justify-content: space-between;
-  width: 80%;
-  height: 80%;
+  width: 30vw;
+  // height: 80%;
   margin: 0;
 }
 

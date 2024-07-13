@@ -20,8 +20,23 @@
   }
 }
 
+.auth-container button {
+  @include btn($light-nav-bg, $light-bg);
+  padding: $base-padding $base-padding * 2 !important;
+  margin: $base-margin;
+}
+
 .banner-btn {
   @include btn($light-nav-bg, $light-bg);
+}
+.title .add-to-cart-btn {
+  @include btn($light-nav-bg, $light-bg);
+  margin: $base-margin 0;
+}
+.cards .add-to-cart-btn {
+  @include btn($light-nav-bg, $light-bg);
+  padding: $base-padding $base-padding * 2;
+  margin: $base-margin;
 }
 
 // Animate the size, inside

@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: "Arial, sans-serif";
   color: #333;
-  background-color: #FBF3D5;
+  background-color: #fbf3d5;
 }
 
 .hero {
@@ -51,7 +51,8 @@ body {
     opacity: 1;
   }
 }
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -76,11 +77,14 @@ body {
   border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 .hero-content {
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5607843137);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -102,7 +106,7 @@ body {
 
 .cta-button {
   padding: 10px 20px;
-  background-color: #9CAFAA;
+  background-color: #9cafaa;
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
@@ -112,7 +116,7 @@ body {
 .categories {
   padding: 2.5rem;
   text-align: center;
-  background-color: #FBF3D5;
+  background-color: #fbf3d5;
   margin-top: 2.5rem;
 }
 
@@ -137,7 +141,7 @@ body {
 }
 
 .category-item {
-  background-color: #9CAFAA;
+  background-color: #9cafaa;
   color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -153,9 +157,11 @@ body {
 }
 
 .features {
-  background-color: #D6DAC8;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  background-color: #d6dac8;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2.5rem;
   padding: 0.75rem;
@@ -171,7 +177,7 @@ body {
   align-items: center;
   flex-direction: column;
   margin: 10px;
-  padding: 10px;
+  padding: 0.75rem;
 }
 
 .happy-customers {
@@ -187,8 +193,10 @@ body {
 }
 
 .containercustomers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2.5rem;
   padding: 0.75rem;
@@ -199,6 +207,7 @@ body {
   display: inline-block;
   border: 1px solid #ddd;
   background-color: #fafafa;
+  padding: 1.125rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: auto;
@@ -213,7 +222,7 @@ body {
 }
 
 .footer {
-  background-color: #EFBC9B;
+  background-color: #efbc9b;
   color: #fff;
   padding: 40px 20px;
   text-align: left;

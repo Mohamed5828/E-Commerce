@@ -13,7 +13,6 @@
 // if (localStorage.getItem("theme") === "dark") {
 //   body.classList.add("dark-mode");
 // }
-import { initCart } from "./cart.js";
 import { renderData } from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");

@@ -26,10 +26,14 @@
   margin-bottom: 0.75rem;
 }
 
+.auth-container form label {
+  margin-bottom: 0.375rem;
+  color: #333;
+}
+
 .auth-container form {
   justify-content: space-between;
-  width: 80%;
-  height: 80%;
+  width: 30vw;
   margin: 0;
 }
 
@@ -54,7 +58,7 @@ body.dark-mode {
 .auth-center-div {
   position: relative;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
 }
 
 .auth-container ul {
@@ -99,7 +103,7 @@ body.dark-mode {
   position: absolute;
   right: 1rem;
   top: 1rem;
-  padding: 1.5rem;
+  padding: 0.375rem;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -112,8 +116,8 @@ body.dark-mode {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .close-auth span:nth-of-type(1) {
-  transform: rotate(45deg) !important;
+  transform: rotate(45deg);
 }
 .close-auth span:nth-of-type(2) {
-  transform: rotate(135deg) !important;
+  transform: rotate(135deg);
 }

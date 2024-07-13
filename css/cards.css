@@ -1,3 +1,8 @@
+.cards {
+  display: flex;
+  align-items: center;
+}
+
 body {
   background-color: #fff9f5;
   color: #000000;
@@ -10,10 +15,11 @@ body.dark-mode {
 
 .cards {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  display: inline-block;
   border-radius: 10px;
   margin: auto;
   width: 20rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .cards:hover:before {

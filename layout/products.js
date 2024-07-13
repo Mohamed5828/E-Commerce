@@ -72,17 +72,24 @@ const loadData = async (page, category = "all") => {
   updatePaginationControls(page, totalPages);
 };
 
-document.getElementById("prev-btn").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    loadData(currentPage, selectedCategory);
-  }
-});
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
 
-document.getElementById("next-btn").addEventListener("click", () => {
-  currentPage++;
-  loadData(currentPage, selectedCategory);
-});
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      loadData(currentPage, selectedCategory);
+    }
+  });
+}
+
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    currentPage++;
+    loadData(currentPage, selectedCategory);
+  });
+}
 
 const loadCategories = async () => {
   const sidePanelContainer = document.getElementById("side-panel-container");
