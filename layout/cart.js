@@ -1,5 +1,5 @@
 import { fetchData } from "../utils/FetchData.js";
-import { fetchCarts, putCarts } from "../utils/HandleAPI.js";
+import {fetchUserCart, putUserCart} from "../utils/HandleAPI.js";
 import { handleCheckout } from "../utils/HandleOrders.js";
 
 export async function initCart() {
@@ -183,7 +183,7 @@ export async function initCart() {
   }
 
   function saveCart(cart) {
-    putCarts(cart);
+    putUserCart(cart);
   }
 
   async function checkoutCart() {
@@ -214,7 +214,7 @@ export async function initCart() {
   }
   async function fetchInitialCart() {
     try {
-      let fetchedCart = await fetchCarts();
+      let fetchedCart = await fetchUserCart();
       cart = fetchedCart;
     } catch (error) {
       console.error(error);
