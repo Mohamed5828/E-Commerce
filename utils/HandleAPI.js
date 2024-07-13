@@ -1,8 +1,9 @@
 import {getLoggedInUserId} from "./handleAuthentication.js";
+
 /**
  * GitHub Repo Token
  */
-const token = "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";
+const token = "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";
 /**
  * GitHub API Server URL
  */
@@ -31,7 +32,8 @@ async function getSHA(url) {
   return data.sha;
 }
 
-// let putJsonServerLock = Promise.resolve();
+let putJsonServerLock = Promise.resolve();
+
 // let counter = 0
 
 /**
@@ -39,40 +41,40 @@ async function getSHA(url) {
  * This function is locked until the previous update is done
  * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#update-a-file
  * @param url url of json server
- * @param sha sha of JSON server file to be updated
  * @param newContent JSON of new content to update file
  * @returns {Promise<void>}
  */
-async function putJsonServer(url, sha, newContent) {
+async function putJsonServer(url, newContent) {
   const body = {
     message: "Update DB",
     content: btoa(JSON.stringify(newContent)),
-    sha: sha,
+    sha: "",
   };
-  // putJsonServerLock = putJsonServerLock.then(async () => {
-  // console.log(counter++)
-  // console.log("here")
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
+
+  putJsonServerLock = putJsonServerLock.then(async () => {
+    try {
+      console.log("Acquiring SHA for", url);
+      body.sha = await getSHA(url);
+      console.log("SHA acquired:", body.sha);
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(
+            `Error ${url} Data: ${response.status} ${response.statusText}`
+        );
+      }
+      console.log("PUT request completed with status", response.status);
+    } catch (error) {
+      console.error("Error during PUT request:", error);
+    }
   });
-  console.log("done with response status", response.status)
-  // if (response.status === 409) {
-  //   await new Promise((resolve) => setTimeout(resolve, 1000))
-  //   const newSha = await getSHA(url);
-  //   return putJsonServer(url, newSha, newContent);
-  // }
-  if (!response.ok) {
-    console.error(
-        `Network Error During PUT ${url} Data: ${response.status} ${response.statusText}`
-    );
-  }
-  // return putJsonServerLock;
-  // });
+  return putJsonServerLock;
 }
 
 /**
@@ -123,7 +125,7 @@ export async function fetchCarts() {
  * @returns {Promise<void>}
  */
 export async function putUsers(users) {
-  await putJsonServer(usersUrl, await getSHA(usersUrl), users);
+  await putJsonServer(usersUrl, users);
 }
 
 /**
@@ -133,7 +135,7 @@ export async function putUsers(users) {
  * @returns {Promise<void>}
  */
 export async function putCarts(carts) {
-  await putJsonServer(cartUrl, await getSHA(cartUrl), carts);
+  await putJsonServer(cartUrl, carts);
 }
 
 /**
