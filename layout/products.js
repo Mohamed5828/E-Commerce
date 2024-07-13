@@ -1,3 +1,6 @@
+import { newSearchProducts } from "./navbar.js";
+import { flag } from "./navbar.js";
+
 let currentPage = 1;
 const itemsPerPage = 10;
 import { initCart } from "./cart.js";
@@ -137,7 +140,10 @@ const loadCategories = async () => {
 let selectedCategory = "all";
 
 loadCategories();
-loadData(currentPage, selectedCategory);
+
+if(flag==false){
+  loadData(currentPage, selectedCategory);
+}
 
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
