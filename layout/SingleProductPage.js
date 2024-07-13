@@ -122,7 +122,15 @@ async function main() {
         event.currentTarget.classList.add("active");
       });
     });
-
+    if (localStorage.getItem("theme") === "dark") {
+      document
+        .querySelectorAll("*")
+        .forEach((element) => element.classList.add("dark-mode"));
+    } else {
+      document
+        .querySelectorAll("*")
+        .forEach((element) => element.classList.remove("dark-mode"));
+    }
     initCart();
   } catch (error) {
     console.error("Error in main function:", error);
@@ -130,6 +138,3 @@ async function main() {
 }
 
 main();
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-mode");
-}

@@ -19,7 +19,7 @@
   z-index: 3;
 }
 .nav-container.dark-mode {
-  background-color: #474E68;
+  background-color: #474e68;
 }
 
 .logo {
@@ -50,7 +50,7 @@
 }
 .search-nav.dark-mode {
   background-color: #404258;
-  border: 1px solid #fff;
+  border: 1px solid #9bbec8;
 }
 
 .search-nav form {
@@ -76,7 +76,7 @@
 }
 .search-nav button.dark-mode {
   background-color: #404258;
-  border-left: 1px solid #fff;
+  border-left: 1px solid #9bbec8;
 }
 
 .right-nav {
@@ -132,8 +132,8 @@
   border-left: 1px solid #9cafaa;
 }
 .mobile-search-form button.dark-mode {
-  background-color: #474E68;
-  border-left: 1px solid #474E68;
+  background-color: #474e68;
+  border-left: 1px solid #474e68;
 }
 
 @media (min-width: 720px) {

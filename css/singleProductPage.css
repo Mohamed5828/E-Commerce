@@ -4,7 +4,7 @@
 }
 
 .single-product-container {
-  overflow-y: hidden;
+  overflow-x: hidden;
   margin-top: 130px;
 }
 
@@ -92,7 +92,7 @@
   margin: 2.25rem auto;
 }
 .product-overview.dark-mode {
-  border: 1px solid #164863;
+  border: 1px solid #9bbec8;
 }
 
 .overview-title {
@@ -124,7 +124,11 @@
   background-color: #fbf3d5;
 }
 .review:nth-child(odd).dark-mode {
-  background-color: #ffffff;
+  background-color: #9bbec8;
+}
+
+.review:nth-child(odd) .dark-mode {
+  background-color: #9bbec8;
 }
 
 .description {
@@ -216,7 +220,7 @@
     margin: 1.5rem 0.75rem;
   }
   .product-overview.dark-mode {
-    border: 1px solid #164863;
+    border: 1px solid #9bbec8;
   }
 }
 .home {
