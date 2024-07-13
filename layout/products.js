@@ -1,10 +1,7 @@
 let currentPage = 1;
 const itemsPerPage = 10;
 import { initCart } from "./cart.js";
-let navbar = document.getElementById("navbar-container");
-let cart = document.getElementById("cart-container");
-console.log(navbar);
-console.log(cart);
+
 async function initializeCart() {
   try {
     initCart();
