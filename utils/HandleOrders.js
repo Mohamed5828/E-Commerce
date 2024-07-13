@@ -66,7 +66,7 @@ export function populateOrders(section) {
                 <p><b>Quantity:</b> ${item.amount}</p>
               </article>
             </div>`;
-            orderTotal += parseFloat(item.price);
+            orderTotal += parseFloat(item.price) * parseFloat(item.amount);
           });
           section.innerHTML += `
             <div class="order-card-item">
@@ -78,7 +78,7 @@ export function populateOrders(section) {
               <hr>
               <footer>
                 <p><b>Order status:</b> Lorem ipsum dolor sit amet</p>
-                <p><b>Order Total:</b>${orderTotal}</p>
+                <p><b>Order Total:</b>${orderTotal.toFixed(2)}</p>
               </footer>
             </div>
           `;
