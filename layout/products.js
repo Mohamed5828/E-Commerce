@@ -10,7 +10,7 @@ export const renderData = (data) => {
     .map(
       (item) => `
     <div class="cards"> 
-      <a href="${window.location.origin}/SingleProductPage.html?product=${item.id}">
+      <a href="${window.location.origin}/layout/SingleProductPage.html?product=${item.id}">
         <div class="card-desc">
           <p>${item.description}</p>
         </div>
