@@ -19,6 +19,6 @@ export const handleSearch = (event) => {
     const urlParams = new URLSearchParams();
     urlParams.set("query", query);
     urlParams.set("page", 1);
-    window.location.href = `http://127.0.0.1:5500/layout/products.html?${urlParams.toString()}`;
+    window.location.href = `${window.location.origin}/layout/products.html?${urlParams.toString()}`;
   }
 };

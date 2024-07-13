@@ -40,7 +40,7 @@ fetch("https://dummyjson.com/products/categories")
       categoryItem.className = "category-item";
       categoryItem.textContent = category.name;
       categoryItem.addEventListener("click", () => {
-        window.location.href = `http://127.0.0.1:5500/layout/products.html?category=${category.slug}`;
+        window.location.href = `${window.location.origin}/layout/products.html?category=${category.slug}`;
       });
       categoriesSlider.appendChild(categoryItem);
     });
