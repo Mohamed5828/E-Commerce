@@ -1,7 +1,8 @@
 import { fetchData } from "../utils/FetchData.js";
-import { putCarts } from "../utils/HandleAPI.js";
+import {fetchUserCart, putUserCart} from "../utils/HandleAPI.js";
+import { handleCheckout } from "../utils/HandleOrders.js";
 
-export function initCart() {
+export async function initCart() {
   const closeCartBtn = document.querySelector(".close-cart");
   const clearCartBtn = document.querySelector(".clear-cart");
   const cartDOM = document.querySelector(".cart");
@@ -12,9 +13,9 @@ export function initCart() {
   const openCartBtn = document.querySelector(".cart-btn");
   const checkout = document.querySelector(".checkout");
 
-  let cart = [];
   let buttonsDOM = [];
-
+  let cart = [];
+  emptyCartUi();
   async function getAddToCartBtn() {
     const buttons = [...document.querySelectorAll(".add-to-cart-btn")];
     buttonsDOM = buttons;
@@ -105,6 +106,16 @@ export function initCart() {
     cartDOM.classList.remove("showCart");
   }
 
+  function emptyCartUi() {
+    cart = [];
+    while (cartContent.firstChild) {
+      cartContent.removeChild(cartContent.firstChild);
+    }
+
+    calculateCartValues(cart);
+    updateButtons();
+  }
+
   function clearCart() {
     cart = [];
     while (cartContent.firstChild) {
@@ -120,8 +131,8 @@ export function initCart() {
   clearCartBtn.addEventListener("click", clearCart);
   openCartBtn.addEventListener("click", openCart);
   checkout.addEventListener("click", (e) => {
-    e.stopPropagation;
     checkoutCart();
+    e.stopPropagation;
   });
   function populateCart(cart) {
     cart.forEach((item) => addToCart(item));
@@ -172,15 +183,20 @@ export function initCart() {
   }
 
   function saveCart(cart) {
-    putCarts(cart);
+    putUserCart(cart);
   }
 
-  function checkoutCart() {
-    let date = new Date();
-    let year = date.toDateString();
-    let checkout = { [year]: cart };
-    console.log(checkout);
-    clearCart();
+  async function checkoutCart() {
+    if (cart.length != 0) {
+      try {
+        await handleCheckout();
+        clearCart();
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      alert("Cart is Empty");
+    }
   }
 
   function updateButtons() {
@@ -196,12 +212,22 @@ export function initCart() {
       }
     });
   }
+  async function fetchInitialCart() {
+    try {
+      let fetchedCart = await fetchUserCart();
+      cart = fetchedCart;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  await fetchInitialCart();
 
-  const fetchedCart = fetchCarts() || [];
-  calculateCartValues(fetchedCart);
-  populateCart(fetchedCart);
-  cart = fetchedCart;
+  calculateCartValues(cart);
+  populateCart(cart);
   getAddToCartBtn();
   console.log("loaded");
   updateButtons(); // Ensure button states are consistent on initialization
+}
+export function clearCartOnLogout() {
+  initCart();
 }

@@ -1,0 +1,74 @@
+@import "./colors";
+@import "./variables";
+@import "./breakpoints";
+
+@mixin btn($bg-color, $border-color) {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  border: 0;
+  padding: $base-padding;
+  background-color: $bg-color;
+  line-height: 1;
+  color: $border-color;
+  transition: 0.25s;
+  &:hover,
+  &:focus {
+    border: 1px solid $border-color;
+    background-color: transparent;
+  }
+}
+
+// Animate the size, inside
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em $defaultWhite;
+}
+
+// Animate the size, outside
+.pulse:hover,
+.pulse:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 $defaultWhite;
+  }
+}
+
+// Stack multiple shadows, one from the left, the other from the right
+.close:hover,
+.close:focus {
+  box-shadow: inset -3.5em 0 0 0 $defaultWhite, inset 3.5em 0 0 0 $defaultWhite;
+}
+
+// Size can also be negative; see how it's smaller than the element
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em $defaultWhite;
+  transform: translateY(-0.25em);
+}
+
+// Animating from the bottom
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 $defaultWhite;
+}
+
+// And from the left
+.sliding:hover,
+.sliding:focus {
+  box-shadow: inset 6.5em 0 0 0 red;
+}
+
+// Multiple shadows, one on the outside, another on the inside
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 0 $defaultWhite, inset 6em 3.5em 0 0 $defaultWhite;
+  }
+}

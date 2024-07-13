@@ -1,5 +1,5 @@
 body {
-  background-color: #ddf2fd;
+  background-color: #fff9f5;
   color: #000000;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -56,11 +56,22 @@ body.dark-mode {
   height: 19rem;
 }
 
+.card-desc p {
+  margin: 10px;
+}
+
 .container {
   padding: 0.75rem;
 }
 
+.all-products-container {
+  display: flex;
+  width: 100%;
+  margin-top: 130px;
+}
+
 .product {
+  flex-grow: 2;
   padding: 0.75rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -84,4 +95,13 @@ body.dark-mode {
 
 .addtocart:hover {
   transform: scale(1.1);
+}
+
+#side-panel-container {
+  margin-left: 15px;
+  line-height: 35px;
+}
+
+a {
+  color: inherit;
 }

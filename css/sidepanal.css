@@ -1,0 +1,61 @@
+/* Styles for side panel  */
+.side-panel-container {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.side-panel-container.active {
+    display: block;
+    width: 15em;
+
+  }
+  
+  .side-panel-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-left: 20px;
+  }
+  
+  .side-panel-container ul li {
+    margin-bottom: 15px;
+  }
+  
+  .side-panel-container ul li a {
+    text-decoration: none;
+    color: #888585;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  
+  .side-panel-container ul li a:hover {
+    background-color: #ddd;
+     color: #000;
+  }
+/* styling the Toggle button */
+   .toggle-panel-btn {
+    position: fixed;
+    top: 3rem;
+    background-color: black;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.7s;
+  }
+  .toggle-panel-btn.active{
+    background-color: blue;
+    top: 2rem;
+    transition: 0.7s;
+}

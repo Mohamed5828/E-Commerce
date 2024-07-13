@@ -21,24 +21,23 @@ const fetchData = async (page, limit, category = "all") => {
   return data;
 };
 
-const renderData = (data) => {
+export const renderData = (data) => {
   const products = document.querySelector(".product");
-
   products.innerHTML = data
     .map(
       (item) => `  
     <div class="cards"> 
         <a href="http://127.0.0.1:5500/layout/SingleProductPage.html?product=${item.id}">
-            <p class="card-desc">${item.description}</p>
+        <div class="card-desc">
+            <p >${item.description}</p>
+        </div>
             <img class="card-img" src="${item.thumbnail}" alt="thumbnail" >
             <div class="container">
-            <h4 class="card-title">"${item.title}"</h4>
+            <h4 class="card-title">${item.title}</h4>
             <p class="card-title">${item.price} L.E.</p>
             </div>
         </a>
-      <button class="addtocart">
-        <div class="pretext">ADD TO CART</div>
-      </button>
+      <button class="add-to-cart-btn" id="addToCartBtn" data-id=${item.id}>Add to cart</button>
       </div>
       `
     )

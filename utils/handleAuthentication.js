@@ -1,3 +1,4 @@
+import { clearCartOnLogout } from "../layout/cart.js";
 import { fetchUsers, putUsers } from "./HandleAPI.js";
 
 /**
@@ -28,33 +29,37 @@ function hashPassword(password, salt) {
  * @returns {Promise<void>}
  */
 export async function handleSignIn(event) {
-  let form = event.target
-  event.preventDefault()
+  let form = event.target;
+  event.preventDefault();
 
-  let email = (form.email.value).toLowerCase()
-  let password = form.password.value
-  let remMe = form["rem-me"].checked
+  let email = form.email.value.toLowerCase();
+  let password = form.password.value;
+  let remMe = form["rem-me"].checked;
   try {
-    let users = await fetchUsers()
-    console.log(users[0])
-    console.log(hashPassword(password, users[0].salt))
-    let user = users.find(user => user.email === email && user.hashed_password === hashPassword(password, user.salt))
+    let users = await fetchUsers();
+    console.log(users[0]);
+    console.log(hashPassword(password, users[0].salt));
+    let user = users.find(
+      (user) =>
+        user.email === email &&
+        user.hashed_password === hashPassword(password, user.salt)
+    );
     if (user) {
       if (remMe) {
-        localStorage.setItem("auth-user", user.id)
+        localStorage.setItem("auth-user", user.id);
       } else {
-        sessionStorage.setItem("auth-user", user.id)
+        sessionStorage.setItem("auth-user", user.id);
       }
-      form.submit()
+      form.submit();
     } else {
-      document.getElementById("auth-err-msg-signin").style.display = "inline"
-      form.reset()
+      document.getElementById("auth-err-msg-signin").style.display = "inline";
+      form.reset();
     }
   } catch (e) {
-    console.error(e)
-    alert(e)
+    console.error(e);
+    alert(e);
   }
-
+  location.href = `../homepage.html`;
 }
 
 /**
@@ -65,40 +70,39 @@ export async function handleSignIn(event) {
  * @param event
  */
 export async function handleSignUp(event) {
-  let form = event.target
-  event.preventDefault()
+  let form = event.target;
+  event.preventDefault();
 
-  let user_id_counter = await fetchUsers().then((users) => users.length)
-  let name = form.uname.value
-  let email = (form.email.value).toLowerCase()
-  let password = form.password.value
+  let user_id_counter = await fetchUsers().then((users) => users.length);
+  let name = form.uname.value;
+  let email = form.email.value.toLowerCase();
+  let password = form.password.value;
   try {
-    let users = await fetchUsers()
-    let salt = generateRandomSalt(16)
+    let users = await fetchUsers();
+    let salt = generateRandomSalt(16);
     let user = {
       id: user_id_counter,
       name: name,
       email: email,
       salt: salt,
       hashed_password: hashPassword(password, salt),
-      orders: []
-    }
-    if (users.find(user => user.email === email)) {
-      document.getElementById("auth-err-msg-signup").style.display = "inline"
-      form.reset()
+      orders: [],
+    };
+    if (users.find((user) => user.email === email)) {
+      document.getElementById("auth-err-msg-signup").style.display = "inline";
+      form.reset();
     } else {
-      document.getElementById("auth-err-msg-signup").style.display = "none"
-      users.push(user)
+      document.getElementById("auth-err-msg-signup").style.display = "none";
+      users.push(user);
       // localStorage.setItem("auth-users", JSON.stringify(users))
-      await putUsers(users)
+      await putUsers(users);
       // localStorage.setItem("auth-user-id-counter", user_id_counter + 1)
-      form.submit()
+      form.submit();
     }
   } catch (e) {
-    console.error(e)
-    alert(e)
+    console.error(e);
+    alert(e);
   }
-
 }
 
 /**
@@ -107,7 +111,11 @@ export async function handleSignUp(event) {
  * @return {int} The ID of the currently logged-in user, or -1 if no user is logged in.
  */
 export function getLoggedInUserId() {
-  return parseInt(localStorage.getItem("auth-user") ?? sessionStorage.getItem("auth-user") ?? -1)
+  return parseInt(
+    localStorage.getItem("auth-user") ??
+      sessionStorage.getItem("auth-user") ??
+      -1
+  );
 }
 
 /**
@@ -116,7 +124,8 @@ export function getLoggedInUserId() {
  * @return {void} This function does not return anything.
  */
 export function logout() {
-  localStorage.removeItem("auth-user")
-  sessionStorage.removeItem("auth-user")
-  location.href = `../index.html`
+  localStorage.removeItem("auth-user");
+  sessionStorage.removeItem("auth-user");
+  clearCartOnLogout();
+  location.href = `../homepage.html`;
 }

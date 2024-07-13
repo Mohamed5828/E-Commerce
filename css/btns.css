@@ -1,0 +1,43 @@
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em #ffffff;
+}
+
+.pulse:hover,
+.pulse:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #ffffff;
+  }
+}
+.close:hover,
+.close:focus {
+  box-shadow: inset -3.5em 0 0 0 #ffffff, inset 3.5em 0 0 0 #ffffff;
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em #ffffff;
+  transform: translateY(-0.25em);
+}
+
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 #ffffff;
+}
+
+.sliding:hover,
+.sliding:focus {
+  box-shadow: inset 6.5em 0 0 0 red;
+}
+
+.offset {
+  box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+}
+.offset:hover, .offset:focus {
+  box-shadow: 0 0 0 0 #ffffff, inset 6em 3.5em 0 0 #ffffff;
+}

@@ -6,12 +6,7 @@
   overflow-y: hidden;
   margin-top: $navbar-margin;
 }
-.checkout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-}
+
 .title {
   display: flex;
   flex-direction: column;
@@ -47,10 +42,11 @@
 .small-img-container {
   background-color: $defaultWhite;
   border-radius: 8px;
-  height: auto;
   padding: 0;
   width: 40px;
   margin-bottom: 5px;
+  height: 40px;
+  justify-content: center;
   @extend %flex-center;
   border: 2px solid grey;
 
@@ -61,7 +57,8 @@
 }
 .small-img {
   border-radius: 5px;
-  width: 40px;
+  max-width: 100%;
+  max-height: 100%;
   cursor: pointer;
 }
 .active {
@@ -191,12 +188,14 @@
   .small-img-container {
     background-color: $defaultWhite;
     border-radius: 8px;
-    height: auto;
     padding: 0;
     width: 40px;
     margin: 0 $base-margin;
     @extend %flex-center;
     border: 2px solid grey;
+    height: 40px;
+    display: flex;
+    justify-content: center;
     &.dark-mode {
       background-color: $defaultBlack;
       color: $defaultWhite;
