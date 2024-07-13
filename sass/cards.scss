@@ -94,13 +94,43 @@ body {
 }
 
 #side-panel-container li {
-  padding: $base-padding 0;
+  padding: $base-padding;
 }
-#side-panel-container {
-  margin: $base-margin $base-margin * 2;
-  line-height: $line-height;
+#side-panel-container a {
+  padding: $base-padding;
+}
+#side-panel-container a {
+  position: relative;
+  text-decoration: none;
 }
 
+#side-panel-container a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  border-radius: 40px;
+  transition: opacity 0.3s ease;
+}
+
+#side-panel-container a:hover::after {
+  opacity: 1;
+}
+
+#side-panel-container {
+  margin: $base-margin 0;
+  line-height: $line-height;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+#side-panel-container::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
 a {
   color: inherit;
 }
