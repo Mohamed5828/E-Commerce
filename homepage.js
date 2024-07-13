@@ -39,7 +39,9 @@ fetch("https://dummyjson.com/products/categories")
       const categoryItem = document.createElement("div");
       categoryItem.className = "category-item";
       categoryItem.textContent = category.name;
-      console.log(category);
+      categoryItem.addEventListener("click", () => {
+        window.location.href = `http://127.0.0.1:5500/layout/products.html?category=${category.slug}`;
+      });
       categoriesSlider.appendChild(categoryItem);
     });
 
