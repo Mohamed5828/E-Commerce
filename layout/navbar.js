@@ -1,4 +1,4 @@
-import { renderData } from "./products.js";
+import {renderData} from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");
 
@@ -47,27 +47,37 @@ async function navbar() {
   </div>`;
 
   navbarContainer.innerHTML = navbarData;
-  
+
   document.getElementById("moon-icon").addEventListener("click", toggleTheme);
   document.getElementById("sun-icon").addEventListener("click", toggleTheme);
-  
+
   document.getElementById("newSearchInput").addEventListener("keyup", () => {
-      newSearchProducts(document.getElementById("newSearchInput").value);
+    newSearchProducts(document.getElementById("newSearchInput").value);
   });
 
   document.getElementById("mobile-search-form").addEventListener("keyup", () => {
     newSearchProducts(document.getElementById("mobile-search").value);
-});
+  });
 
   if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
+    document.querySelectorAll('*').forEach(function (element) {
+      document.body.classList.add("dark-mode");
+      element.classList.add("dark-mode");
+    });
+  } else {
+    document.querySelectorAll('*').forEach(function (element) {
+      element.classList.remove("dark-mode");
+    });
   }
 }
+
 navbar();
 
 function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
-  
+  document.querySelectorAll('*').forEach(function (element) {
+    element.classList.toggle("dark-mode");
+
+  });
   // Save the style in local storage
   if (document.body.classList.contains("dark-mode")) {
     localStorage.setItem("theme", "dark");
