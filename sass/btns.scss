@@ -34,17 +34,26 @@
   @include btn($light-nav-bg, $light-bg);
   margin: $base-margin 0;
 }
-
+#next-btn {
+  @include btn($light-nav-bg, $light-bg);
+  margin: $base-margin 0;
+}
+#prev-btn {
+  @include btn($light-nav-bg, $light-bg);
+  margin: $base-margin 0;
+}
 .cards .add-to-cart-btn {
   @include btn($light-nav-bg, $light-bg);
   padding: $base-padding $base-padding * 2;
   margin: $base-margin;
 }
-
+.page-button {
+  background-color: transparent;
+  border: 0;
+}
 .profile_info button {
   @include btn(#952021, #fff);
 }
-
 
 // Animate the size, inside
 .fill:hover,

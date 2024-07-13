@@ -52,6 +52,42 @@
   color: #9cafaa;
 }
 
+#next-btn {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.75rem;
+  background-color: #9cafaa;
+  line-height: 1;
+  color: #fff9f5;
+  transition: 0.25s;
+  border: 1px solid #9cafaa;
+  margin: 0.75rem 0;
+}
+#next-btn:hover, #next-btn:focus {
+  border: 1px solid #9cafaa;
+  background-color: transparent;
+  color: #9cafaa;
+}
+
+#prev-btn {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.75rem;
+  background-color: #9cafaa;
+  line-height: 1;
+  color: #fff9f5;
+  transition: 0.25s;
+  border: 1px solid #9cafaa;
+  margin: 0.75rem 0;
+}
+#prev-btn:hover, #prev-btn:focus {
+  border: 1px solid #9cafaa;
+  background-color: transparent;
+  color: #9cafaa;
+}
+
 .cards .add-to-cart-btn {
   text-decoration: none;
   cursor: pointer;
@@ -69,6 +105,11 @@
   border: 1px solid #9cafaa;
   background-color: transparent;
   color: #9cafaa;
+}
+
+.page-button {
+  background-color: transparent;
+  border: 0;
 }
 
 .profile_info button {
