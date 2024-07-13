@@ -28,7 +28,9 @@ export const renderData = (data) => {
       (item) => `  
     <div class="cards"> 
         <a href="http://127.0.0.1:5500/layout/SingleProductPage.html?product=${item.id}">
-            <p class="card-desc">${item.description}</p>
+        <div class="card-desc">
+            <p >${item.description}</p>
+        </div>
             <img class="card-img" src="${item.thumbnail}" alt="thumbnail" >
             <div class="container">
             <h4 class="card-title">${item.title}</h4>

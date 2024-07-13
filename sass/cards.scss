@@ -53,6 +53,9 @@ body {
   width: $widthAndHeightCards;
   height: $widthAndHeightCards - 1;
 }
+.card-desc p{
+  margin: 10px;
+}
 .container {
   padding: $base-padding;
 }
@@ -87,3 +90,13 @@ body {
 .addtocart:hover {
   transform: scale(1.1);
 }
+
+
+
+#side-panel-container{
+  margin-left: $base-product-margin-left;
+  line-height: $line-height;
+}
+
+
+a { color: inherit; }
