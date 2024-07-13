@@ -1,9 +1,9 @@
-import { getLoggedInUserId } from "./handleAuthentication.js";
+import {getLoggedInUserId} from "./handleAuthentication.js";
 
 /**
  * GitHub Repo Token
  */
-const token = "";
+const token = "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";
 /**
  * GitHub API Server URL
  */
@@ -25,41 +25,56 @@ async function getSHA(url) {
   });
   if (!response.ok) {
     throw new Error(
-      `Network Error During Get SHA: ${response.status} ${response.statusText}`
+        `Network Error During Get SHA: ${response.status} ${response.statusText}`
     );
   }
   const data = await response.json();
   return data.sha;
 }
 
+let putJsonServerLock = Promise.resolve();
+
+// let counter = 0
+
 /**
- * Update the JSON server using GH API
+ * Update the JSON server using GH API PUT
+ * This function is locked until the previous update is done
  * https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#update-a-file
  * @param url url of json server
- * @param sha sha of JSON server file to be updated
  * @param newContent JSON of new content to update file
  * @returns {Promise<void>}
  */
-async function putJsonServer(url, sha, newContent) {
+async function putJsonServer(url, newContent) {
   const body = {
     message: "Update DB",
     content: btoa(JSON.stringify(newContent)),
-    sha: sha,
+    sha: "",
   };
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
+  putJsonServerLock = putJsonServerLock.then(async () => {
+    try {
+      console.log("Acquiring SHA for", url);
+      body.sha = await getSHA(url);
+      console.log("SHA acquired:", body.sha);
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(
+            `Error ${url} Data: ${response.status} ${response.statusText}`
+        );
+      }
+      console.log("PUT request completed with status", response.status);
+    } catch (error) {
+      console.error("Error during PUT request:", error);
+    }
   });
-  if (!response.ok) {
-    throw new Error(
-      `Network Error During PUT Users Data: ${response.status} ${response.statusText}`
-    );
-  }
+  return putJsonServerLock;
 }
 
 /**
@@ -77,7 +92,7 @@ async function fetchJsonServer(url) {
   });
   if (!response.ok) {
     throw new Error(
-      `Network Error During GET Users Data: ${response.status} ${response.statusText}`
+        `Network Error During GET Users Data: ${response.status} ${response.statusText}`
     );
   }
   return await response.json();
@@ -110,7 +125,7 @@ export async function fetchCarts() {
  * @returns {Promise<void>}
  */
 export async function putUsers(users) {
-  await putJsonServer(usersUrl, await getSHA(usersUrl), users);
+  await putJsonServer(usersUrl, users);
 }
 
 /**
@@ -120,7 +135,7 @@ export async function putUsers(users) {
  * @returns {Promise<void>}
  */
 export async function putCarts(carts) {
-  await putJsonServer(cartUrl, await getSHA(cartUrl), carts);
+  await putJsonServer(cartUrl, carts);
 }
 
 /**

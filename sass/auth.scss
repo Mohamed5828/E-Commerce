@@ -50,7 +50,9 @@ body {
     }
 
     label {
-      @extend %label;
+        margin-bottom: $base-margin * 0.5;
+
+      //@extend %label;
     }
 
     input {
