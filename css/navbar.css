@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.mobile-search-form button, .mobile-search-form, .mobile-search, .cart-person, .right-nav, .search-nav button, .search-nav form, .logo {
+.mobile-search-form button, .mobile-search-form, .mobile-search, .cart-person, .right-nav, .search-nav button, .search-nav form, .logo a, .logo {
   display: flex;
   align-items: center;
 }
@@ -25,6 +25,15 @@
 .logo {
   padding: 0.75rem;
   flex-grow: 4;
+}
+
+.logo a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo a:visited {
+  color: black;
 }
 
 .logo img {

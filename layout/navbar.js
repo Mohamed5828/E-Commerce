@@ -5,8 +5,10 @@ const renderNavbar = () => {
   const navbarData = `
     <div class="nav-container">
       <div class="logo">
+      <a href="../homepage.html">
         <img src="../Logo.png" alt="" />
         <h1>OShop</h1>
+      </a>
       </div>
       <div class="right-nav">
         <div class="search-nav">

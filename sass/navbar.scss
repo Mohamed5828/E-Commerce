@@ -19,7 +19,14 @@
   padding: $base-padding;
   flex-grow: 4;
 }
-
+.logo a {
+  @extend %flex-center;
+  text-decoration: none;
+  color: black;
+}
+.logo a:visited {
+  color: black;
+}
 .logo img {
   margin-right: $base-margin;
   max-width: 70px;
