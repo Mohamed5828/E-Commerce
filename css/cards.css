@@ -119,7 +119,6 @@ a {
 
 .page-button {
   color: black;
-  float: left;
   padding: 0.75rem 0.75rem;
   text-decoration: none;
 }
@@ -127,4 +126,13 @@ a {
 .page-button:hover {
   background-color: #4CAF50;
   color: white;
+}
+
+#page-buttons {
+  display: inline-block;
+}
+
+#pagination-controls {
+  margin: auto;
+  text-align: center;
 }

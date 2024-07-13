@@ -106,7 +106,7 @@ a { color: inherit; }
 
 .page-button{
   color: black;
-  float: left;
+
   padding: $base-padding $base-padding;
   text-decoration: none;
 }
@@ -116,3 +116,11 @@ a { color: inherit; }
   background-color: #4CAF50;
   color: white;
 }
+#page-buttons {
+  display: inline-block;
+}
+#pagination-controls{
+  margin: auto;
+  text-align: center;
+}
+
