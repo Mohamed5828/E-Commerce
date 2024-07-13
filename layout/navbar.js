@@ -103,10 +103,10 @@ document.getElementById("search-form").addEventListener("submit", (event) => {
 });
 
 document
-    .getElementById("mobileSearchForm")
+    .getElementById("mobile-search-form")
     .addEventListener("submit", (event) => {
       event.preventDefault();
-      const query = document.getElementById("mobileSearch").value;
+      const query = document.getElementById("mobile-search").value;
       window.location.href = `products.html?query=${query}`;
     });
 
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-async function newSearchProducts(query) {
+export async function newSearchProducts(query) {
   try {
     flag=true
     const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
