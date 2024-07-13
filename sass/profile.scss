@@ -11,7 +11,7 @@
   display: flex;
 
   * {
-    padding: $base-padding*0.6;
+    padding: $base-padding * 0.6;
   }
 
   aside {
@@ -46,12 +46,12 @@
   hr {
     padding: 0;
     height: 1px;
-    width: 100%
+    width: 100%;
   }
 
   section {
     @extend %flex-column;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-grow: 1;
 
     .order-card-item {
@@ -64,7 +64,8 @@
         flex-direction: row;
         //align-items: center;
       }
-      header, footer {
+      header,
+      footer {
         @extend %flex-center;
       }
       header {
@@ -75,6 +76,4 @@
       }
     }
   }
-
 }
-

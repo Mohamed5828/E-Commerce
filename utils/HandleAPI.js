@@ -1,15 +1,15 @@
-import {getLoggedInUserId} from "./handleAuthentication.js";
+import { getLoggedInUserId } from "./handleAuthentication.js";
 
 /**
  * GitHub Repo Token
  */
-const token = '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';
+const token = "";
 /**
  * GitHub API Server URL
  */
 const serverRootUrl = `https://api.github.com/repos/Ahmed-Rushdi/json-page-test/contents/`;
-const usersUrl = serverRootUrl + "auth_users.json"
-const cartUrl = serverRootUrl + "user-carts.json"
+const usersUrl = serverRootUrl + "auth_users.json";
+const cartUrl = serverRootUrl + "user-carts.json";
 
 /**
  * retrieve sha of JSON server file to be updated
@@ -17,19 +17,19 @@ const cartUrl = serverRootUrl + "user-carts.json"
  * @returns {Promise<*>} sha
  */
 async function getSHA(url) {
-
   const response = await fetch(url, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Authorization': `token ${token}`
-    }
+      Authorization: `token ${token}`,
+    },
   });
   if (!response.ok) {
-    throw new Error(`Network Error During Get SHA: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Network Error During Get SHA: ${response.status} ${response.statusText}`
+    );
   }
   const data = await response.json();
   return data.sha;
-
 }
 
 /**
@@ -44,19 +44,21 @@ async function putJsonServer(url, sha, newContent) {
   const body = {
     message: "Update DB",
     content: btoa(JSON.stringify(newContent)),
-    sha: sha
+    sha: sha,
   };
 
   const response = await fetch(url, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Authorization': `token ${token}`,
-      'Content-Type': 'application/json'
+      Authorization: `token ${token}`,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
   if (!response.ok) {
-    throw new Error(`Network Error During PUT Users Data: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Network Error During PUT Users Data: ${response.status} ${response.statusText}`
+    );
   }
 }
 
@@ -68,13 +70,15 @@ async function putJsonServer(url, sha, newContent) {
  */
 async function fetchJsonServer(url) {
   const response = await fetch(url, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Authorization': `token ${token}`
-    }
+      Authorization: `token ${token}`,
+    },
   });
   if (!response.ok) {
-    throw new Error(`Network Error During GET Users Data: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `Network Error During GET Users Data: ${response.status} ${response.statusText}`
+    );
   }
   return await response.json();
 }
@@ -86,9 +90,7 @@ async function fetchJsonServer(url) {
  * @returns {Promise<Array>} - A promise that resolves to an array of users.
  */
 export async function fetchUsers() {
-  return JSON.parse(
-      atob((await fetchJsonServer(usersUrl)).content)
-  ) ?? []
+  return JSON.parse(atob((await fetchJsonServer(usersUrl)).content)) ?? [];
 }
 
 /**
@@ -98,9 +100,7 @@ export async function fetchUsers() {
  * @returns {Promise<Array>} - A promise that resolves to JSON data of carts.
  */
 export async function fetchCarts() {
-  return JSON.parse(
-      atob((await fetchJsonServer(cartUrl)).content)
-  ) ?? []
+  return JSON.parse(atob((await fetchJsonServer(cartUrl)).content)) ?? [];
 }
 
 /**
@@ -110,7 +110,7 @@ export async function fetchCarts() {
  * @returns {Promise<void>}
  */
 export async function putUsers(users) {
-  await putJsonServer(usersUrl, await getSHA(usersUrl), users)
+  await putJsonServer(usersUrl, await getSHA(usersUrl), users);
 }
 
 /**
@@ -120,7 +120,7 @@ export async function putUsers(users) {
  * @returns {Promise<void>}
  */
 export async function putCarts(carts) {
-  await putJsonServer(cartUrl, await getSHA(cartUrl), carts)
+  await putJsonServer(cartUrl, await getSHA(cartUrl), carts);
 }
 
 /**
@@ -130,19 +130,18 @@ export async function putCarts(carts) {
  * @return {Promise<void>} A promise that resolves once the cart data is updated on the server.
  */
 export async function putUserCart(cart) {
-
-  const user_id = getLoggedInUserId()
-  const carts = await fetchCarts()
-  const index = carts.findIndex(c => c.user_id === user_id);
+  const user_id = getLoggedInUserId();
+  const carts = await fetchCarts();
+  const index = carts.findIndex((c) => c.user_id === user_id);
   if (index !== -1) {
     carts[index].items = cart;
   } else {
     carts.push({
       user_id: user_id,
-      items: cart
-    })
+      items: cart,
+    });
   }
-  await putCarts(carts)
+  await putCarts(carts);
 }
 
 /**
@@ -151,12 +150,12 @@ export async function putUserCart(cart) {
  * @return {Promise<Array>} The cart items for the logged-in user, or an empty array if the user has no cart.
  */
 export async function fetchUserCart() {
-  const user_id = getLoggedInUserId()
-  const carts = await fetchCarts()
-  const index = carts.findIndex(cart => cart.user_id === user_id);
+  const user_id = getLoggedInUserId();
+  const carts = await fetchCarts();
+  const index = carts.findIndex((cart) => cart.user_id === user_id);
   if (index !== -1) {
-    return carts[index].items
+    return carts[index].items;
   } else {
-    return []
+    return [];
   }
 }

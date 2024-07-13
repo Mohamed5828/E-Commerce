@@ -23,7 +23,6 @@ const fetchData = async (page, limit, category = "all") => {
 
 const renderData = (data) => {
   const products = document.querySelector(".product");
-
   products.innerHTML = data
     .map(
       (item) => `  
@@ -36,9 +35,7 @@ const renderData = (data) => {
             <p class="card-title">${item.price} L.E.</p>
             </div>
         </a>
-      <button class="addtocart">
-        <div class="pretext">ADD TO CART</div>
-      </button>
+      <button class="add-to-cart-btn" id="addToCartBtn" data-id=${item.id}>Add to cart</button>
       </div>
       `
     )
