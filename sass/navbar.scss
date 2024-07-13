@@ -137,3 +137,18 @@
     display: none;
   }
 }
+.fa-moon {
+  display: inline-block;
+}
+
+body.dark-mode .fa-moon {
+  display: none;
+}
+
+.fa-sun {
+  display: none;
+}
+
+body.dark-mode .fa-sun {
+  display: inline-block;
+}

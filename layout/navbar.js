@@ -17,49 +17,76 @@ import { initCart } from "./cart.js";
 import { renderData } from "./products.js";
 
 const navbarContainer = document.getElementById("navbar");
+
 async function navbar() {
   const navbarData = `<div class="nav-container">
-  <div class="logo">
-        <img src="../Logo.png" alt="" />
-          <h1>OShop</h1>
-          </div>
-          <div class="right-nav">
-          <div class="search-nav">
-          <form class="search-form" id="searchForm">
+    <div class="logo">
+      <img src="../Logo.png" alt="" />
+      <h1>OShop</h1>
+    </div>
+    <div class="right-nav">
+      <div class="search-nav">
+        <form class="search-form">
           <input
-          class="new-search-input"
-          id="newSearchInput"
-          type="search"
-          placeholder="Search For a Product"
+            class="new-search-input"
+            id="newSearchInput"
+            type="search"
+            placeholder="Search For a Product"
           />
           <button type="submit">
-          <i class="fas fa-search"></i>
+            <i class="fas fa-search"></i>
           </button>
-          </form>
-          </div>
-          <div class="cart-person">
-            <div class="profile-nav" onclick="location.href = './profile.html'">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="cart-btn">
-            <i class="fas fa-shopping-cart"></i>
-              
-              </div>
-              </div>
-              </div>
-              </div> 
-             <div class="mobile-search">
-      <form class="mobile-search-form" id="mobileSearchForm">
-        <input id="mobile-search" type="search" placeholder="Search For a Product" />
-        <button type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </form>
+        </form>
+      </div>
+      <div class="cart-person">
+        <div class="profile-nav" onclick="location.href = './profile.html'">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="cart-btn">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="theme-btn">
+          <i class="far fa-moon" id="moon-icon"></i>
+          <i class="far fa-sun" id="sun-icon"></i>
+        </div>
+      </div>
     </div>
-            `;
+  </div> 
+  <div class="mobile-search">
+    <form class="mobile-search-form">
+      <input id="mobile-search" type="search" placeholder="Search For a Product" />
+      <button type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </div>`;
+
   navbarContainer.innerHTML = navbarData;
+
+  document.getElementById("moon-icon").addEventListener("click", toggleTheme);
+  document.getElementById("sun-icon").addEventListener("click", toggleTheme);
+
+  document.getElementById("newSearchInput").addEventListener("keyup", () => {
+    newSearchProducts(document.getElementById("newSearchInput").value);
+  });
+
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
 }
+
 navbar();
+
+function toggleTheme() {
+  document.body.classList.toggle("dark-mode");
+
+  // Save the style in local storage
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+}
 
 //Searching
 document.getElementById("searchForm").addEventListener("submit", (event) => {
@@ -68,15 +95,17 @@ document.getElementById("searchForm").addEventListener("submit", (event) => {
   window.location.href = `products.html?query=${query}`;
 });
 
-document.getElementById("mobileSearchForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const query = document.getElementById("mobileSearch").value;
-  window.location.href = `products.html?query=${query}`;
-});
+document
+  .getElementById("mobileSearchForm")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = document.getElementById("mobileSearch").value;
+    window.location.href = `products.html?query=${query}`;
+  });
 
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get('query');
+  const query = urlParams.get("query");
 
   if (query) {
     newSearchProducts(query);
@@ -93,8 +122,6 @@ async function newSearchProducts(query) {
   }
 }
 
-
-
 // document.getElementById("searchForm").addEventListener("submit", (event) => {
 
 //   event.preventDefault();
@@ -107,7 +134,6 @@ async function newSearchProducts(query) {
 //   const query = document.getElementById("mobileSearch").value;
 //   newSearchProducts(query);
 // });
-
 
 // async function newSearchProducts(query) {
 //   try {
