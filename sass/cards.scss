@@ -96,8 +96,23 @@ body {
 #side-panel-container {
   margin-left: $base-product-margin-left;
   line-height: $line-height;
+  opacity: 0;
+}
+#side-panel-container:hover {
+  opacity: 1;
 }
 
-a {
-  color: inherit;
+a { color: inherit; }
+
+.page-button{
+  color: black;
+  float: left;
+  padding: $base-padding $base-padding;
+  text-decoration: none;
+}
+
+
+.page-button:hover{
+  background-color: #4CAF50;
+  color: white;
 }
