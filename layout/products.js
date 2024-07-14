@@ -28,9 +28,24 @@ export const renderData = (data) => {
 };
 
 export const updatePaginationControls = (page, totalPages) => {
-  document.getElementById("prev-btn").disabled = page === 1;
-  document.getElementById("next-btn").disabled = page === totalPages;
-
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  prevBtn.disabled = page === 1;
+  nextBtn.disabled = page === totalPages;
+  prevBtn.onclick = () => {
+    if (page > 1) {
+      currentPage = page - 1;
+      updateURLParams();
+      loadData(currentPage, selectedCategory);
+    }
+  };
+  nextBtn.onclick = () => {
+    if (page < totalPages) {
+      currentPage = page + 1;
+      updateURLParams();
+      loadData(currentPage, selectedCategory);
+    }
+  };
   const pageButtonsContainer = document.getElementById("page-buttons");
   pageButtonsContainer.innerHTML = "";
   for (let i = 1; i <= totalPages; i++) {

@@ -1,7 +1,7 @@
-import {fetchData} from "../utils/FetchData.js";
-import {fetchUserCart, putCarts, putUserCart} from "../utils/HandleAPI.js";
-import {handleCheckout} from "../utils/HandleOrders.js";
-import {getLoggedInUserId} from "../utils/handleAuthentication.js";
+import { fetchData } from "../utils/FetchData.js";
+import { fetchUserCart, putCarts, putUserCart } from "../utils/HandleAPI.js";
+import { handleCheckout } from "../utils/HandleOrders.js";
+import { getLoggedInUserId } from "../utils/handleAuthentication.js";
 
 export async function initCart() {
   const closeCartBtn = document.querySelector(".close-cart");
@@ -29,8 +29,8 @@ export async function initCart() {
         event.target.innerText = "In Cart";
 
         try {
-          const {data, isLoading, isError} = await fetchData(
-              `https://dummyjson.com/products/${id}`
+          const { data, isLoading, isError } = await fetchData(
+            `https://dummyjson.com/products/${id}`
           );
 
           if (isLoading) {
@@ -45,7 +45,7 @@ export async function initCart() {
 
           const newlyClickedPro = data;
 
-          cart = [...cart, {...newlyClickedPro, amount: 1}];
+          cart = [...cart, { ...newlyClickedPro, amount: 1 }];
           saveCart(cart);
           calculateCartValues(cart);
           addToCart(newlyClickedPro);
@@ -90,11 +90,11 @@ export async function initCart() {
     `;
     div.querySelector(".remove-item").addEventListener("click", removeCartItem);
     div
-        .querySelector(".fa-chevron-up")
-        .addEventListener("click", increaseAmount);
+      .querySelector(".fa-chevron-up")
+      .addEventListener("click", increaseAmount);
     div
-        .querySelector(".fa-chevron-down")
-        .addEventListener("click", decreaseAmount);
+      .querySelector(".fa-chevron-down")
+      .addEventListener("click", decreaseAmount);
     cartContent.appendChild(div);
   }
 
@@ -187,7 +187,6 @@ export async function initCart() {
 
   function saveCart(cart) {
     if (getLoggedInUserId() === -1) {
-      alert("Please login before checking out")
       location.href = `../layout/auth.html`;
     }
     putUserCart(cart);
@@ -197,10 +196,10 @@ export async function initCart() {
     if (cart.length != 0) {
       try {
         if (getLoggedInUserId() === -1) {
-          alert("Please login before checking out")
+          alert("Please login before checking out");
           location.href = `../layout/auth.html`;
         }
-        await putUserCart(cart).then(handleCheckout)
+        await putUserCart(cart).then(handleCheckout);
         clearCart();
       } catch (error) {
         alert(error);

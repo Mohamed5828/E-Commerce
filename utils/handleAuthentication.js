@@ -59,7 +59,7 @@ export async function handleSignIn(event) {
     console.error(e);
     alert(e);
   }
-  location.href = `../homepage.html`;
+  location.href = `../index.html`;
 }
 
 /**
@@ -127,5 +127,5 @@ export function logout() {
   localStorage.removeItem("auth-user");
   sessionStorage.removeItem("auth-user");
   clearCartOnLogout();
-  location.href = `../homepage.html`;
+  location.href = `../inedx.html`;
 }

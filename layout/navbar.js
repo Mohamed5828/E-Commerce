@@ -5,7 +5,7 @@ const renderNavbar = () => {
   const navbarData = `
     <div class="nav-container">
       <div class="logo">
-      <a href="../homepage.html">
+      <a href="../index.html">
         <img src="../Logo.png" alt="" />
         <h1>OShop</h1>
       </a>
