@@ -1,3 +1,5 @@
+import { initCart } from "./layout/cart.js";
+
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
 showSlides();
@@ -68,4 +70,5 @@ fetch("https://dummyjson.com/products/categories")
     categoriesSlider.addEventListener("mouseleave", startScrolling);
 
     startScrolling();
+    initCart();
   });
