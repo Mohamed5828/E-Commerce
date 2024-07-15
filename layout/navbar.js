@@ -2,6 +2,11 @@ import { handleSearch } from "./search.js";
 
 const renderNavbar = () => {
   const navbarContainer = document.getElementById("navbar");
+  function getProfileHref() {
+    const currentPath = window.location.pathname;
+    const isRootIndex = currentPath.endsWith("index.html");
+    return isRootIndex ? "./layout/profile.html" : "./profile.html";
+  }
   const navbarData = `
     <div class="nav-container">
       <div class="logo">
@@ -25,7 +30,7 @@ const renderNavbar = () => {
           </form>
         </div>
         <div class="cart-person">
-          <div class="profile-nav" onclick="location.href = './profile.html'">
+          <div class="profile-nav" id="profileNav">
             <i class="fas fa-user"></i>
           </div>
           <div class="cart-btn">
@@ -48,7 +53,9 @@ const renderNavbar = () => {
     </div>`;
 
   navbarContainer.innerHTML = navbarData;
-
+  document.getElementById("profileNav").onclick = function () {
+    location.href = getProfileHref();
+  };
   const searchForm = document.getElementById("search-form");
   const mobileSearchForm = document.getElementById("mobile-search-form");
 

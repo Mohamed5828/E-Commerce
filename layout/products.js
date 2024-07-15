@@ -5,6 +5,8 @@ export const itemsPerPage = 10;
 let selectedCategory = "all";
 
 export const renderData = (data) => {
+  initializeCart();
+
   const products = document.querySelector(".product");
   products.innerHTML = data
     .map(
@@ -130,8 +132,6 @@ const loadCategories = async () => {
         loadData(currentPage, category);
       });
     });
-
-    initializeCart();
   } catch (error) {
     console.error(error);
     sidePanelContainer.innerHTML = "<p>Error loading Categories data.</p>";

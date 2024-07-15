@@ -186,10 +186,13 @@ export async function initCart() {
   }
 
   function saveCart(cart) {
+    console.log(getLoggedInUserId());
     if (getLoggedInUserId() === -1) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      putUserCart(cart);
       location.href = `../layout/auth.html`;
     }
-    putUserCart(cart);
   }
 
   async function checkoutCart() {
@@ -225,8 +228,13 @@ export async function initCart() {
 
   async function fetchInitialCart() {
     try {
-      let fetchedCart = await fetchUserCart();
-      cart = fetchedCart;
+      if (getLoggedInUserId() === -1) {
+        let fetchedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart = fetchedCart;
+      } else {
+        let fetchedCart = await fetchUserCart();
+        cart = fetchedCart;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -238,9 +246,5 @@ export async function initCart() {
   populateCart(cart);
   getAddToCartBtn();
   console.log("loaded");
-  updateButtons(); // Ensure button states are consistent on initialization
-}
-
-export function clearCartOnLogout() {
-  initCart();
+  updateButtons();
 }
