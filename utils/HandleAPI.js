@@ -1,9 +1,10 @@
-import {getLoggedInUserId} from "./handleAuthentication.js";
+import { getLoggedInUserId } from "./handleAuthentication.js";
 
 /**
  * GitHub Repo Token
  */
-const token = "";
+const token =
+  "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";
 /**
  * GitHub API Server URL
  */
@@ -25,7 +26,7 @@ async function getSHA(url) {
   });
   if (!response.ok) {
     throw new Error(
-        `Network Error During Get SHA: ${response.status} ${response.statusText}`
+      `Network Error During Get SHA: ${response.status} ${response.statusText}`
     );
   }
   const data = await response.json();
@@ -66,7 +67,7 @@ async function putJsonServer(url, newContent) {
       });
       if (!response.ok) {
         throw new Error(
-            `Error ${url} Data: ${response.status} ${response.statusText}`
+          `Error ${url} Data: ${response.status} ${response.statusText}`
         );
       }
       console.log("PUT request completed with status", response.status);
@@ -92,7 +93,7 @@ async function fetchJsonServer(url) {
   });
   if (!response.ok) {
     throw new Error(
-        `Network Error During GET Users Data: ${response.status} ${response.statusText}`
+      `Network Error During GET Users Data: ${response.status} ${response.statusText}`
     );
   }
   return await response.json();

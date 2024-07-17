@@ -127,5 +127,5 @@ export function getLoggedInUserId() {
 export function logout() {
   localStorage.removeItem("auth-user");
   sessionStorage.removeItem("auth-user");
-  location.href = `../inedx.html`;
+  location.href = `../index.html`;
 }

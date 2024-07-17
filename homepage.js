@@ -69,6 +69,12 @@ fetch("https://dummyjson.com/products/categories")
     categoriesSlider.addEventListener("mouseenter", stopScrolling);
     categoriesSlider.addEventListener("mouseleave", startScrolling);
 
+    document
+      .getElementById("mainprev")
+      .addEventListener("click", plusSlides(-1));
+    document
+      .getElementById("mainnext")
+      .addEventListener("click", plusSlides(1));
     startScrolling();
     initCart();
   });
