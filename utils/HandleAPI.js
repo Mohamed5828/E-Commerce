@@ -1,15 +1,17 @@
 import { getLoggedInUserId } from "./handleAuthentication.js";
 
 /**
- * GitHub Repo Token
+ * JSONBIN key
  */
-const token = "";
+const token = "$2a$10$yhhI5UEuuRw6277gMRi9ZujTuA79KVD3BUCRo8fMgUj.FDBIvFDh6";
 /**
- * GitHub API Server URL
+ * JSONBIN API Server URL
  */
-const serverRootUrl = `https://api.github.com/repos/Ahmed-Rushdi/json-page-test/contents/`;
-const usersUrl = serverRootUrl + "auth_users.json";
-const cartUrl = serverRootUrl + "user-carts.json";
+const serverRootUrl = `https://api.jsonbin.io/v3/b/`;
+const usersUrl = serverRootUrl + "66928642acd3cb34a8659965";
+const cartUrl = serverRootUrl + "66976778ad19ca34f888caab";
+
+
 
 /**
  * retrieve sha of JSON server file to be updated
@@ -45,24 +47,24 @@ let putJsonServerLock = Promise.resolve();
  * @returns {Promise<void>}
  */
 async function putJsonServer(url, newContent) {
-  const body = {
-    message: "Update DB",
-    content: btoa(JSON.stringify(newContent)),
-    sha: "",
-  };
+  // const body = {
+  //   message: "Update DB",
+  //   content: btoa(JSON.stringify(newContent)),
+  //   sha: "",
+  // };
 
   putJsonServerLock = putJsonServerLock.then(async () => {
     try {
-      console.log("Acquiring SHA for", url);
-      body.sha = await getSHA(url);
-      console.log("SHA acquired:", body.sha);
+      // console.log("Acquiring SHA for", url);
+      // body.sha = await getSHA(url);
+      // console.log("SHA acquired:", body.sha);
       const response = await fetch(url, {
         method: "PUT",
         headers: {
-          Authorization: `token ${token}`,
+          "X-Master-Key": `${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(newContent),
       });
       if (!response.ok) {
         throw new Error(
@@ -87,7 +89,9 @@ async function fetchJsonServer(url) {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      Authorization: `token ${token}`,
+      "X-Master-Key": `${token}`,
+      "X-Bin-Meta": "false",
+
     },
   });
   if (!response.ok) {
@@ -105,7 +109,7 @@ async function fetchJsonServer(url) {
  * @returns {Promise<Array>} - A promise that resolves to an array of users.
  */
 export async function fetchUsers() {
-  return JSON.parse(atob((await fetchJsonServer(usersUrl)).content)) ?? [];
+  return (await fetchJsonServer(usersUrl)) ?? [];
 }
 
 /**
@@ -115,7 +119,7 @@ export async function fetchUsers() {
  * @returns {Promise<Array>} - A promise that resolves to JSON data of carts.
  */
 export async function fetchCarts() {
-  return JSON.parse(atob((await fetchJsonServer(cartUrl)).content)) ?? [];
+  return (await fetchJsonServer(cartUrl)) ?? [];
 }
 
 /**
