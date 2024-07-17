@@ -4,7 +4,9 @@ const renderNavbar = () => {
   const navbarContainer = document.getElementById("navbar");
   function getProfileHref() {
     const currentPath = window.location.pathname;
-    const isRootIndex = currentPath.endsWith("index.html" || "app");
+    const isRootIndex =
+      currentPath.endsWith("index.html") || currentPath.endsWith("/");
+
     return isRootIndex ? "./layout/profile.html" : "./profile.html";
   }
   const navbarData = `
