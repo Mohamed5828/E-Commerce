@@ -3,8 +3,7 @@ import { getLoggedInUserId } from "./handleAuthentication.js";
 /**
  * GitHub Repo Token
  */
-const token =
-  "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";
+const token = "";
 /**
  * GitHub API Server URL
  */
