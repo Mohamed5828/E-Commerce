@@ -3,15 +3,13 @@ import { getLoggedInUserId } from "./handleAuthentication.js";
 /**
  * JSONBIN key
  */
-const token = "$2a$10$yhhI5UEuuRw6277gMRi9ZujTuA79KVD3BUCRo8fMgUj.FDBIvFDh6";
+const token = "$2a$10$gQf4K9wk82oEEoDYDPKwGukkQulVLQsfNz6NehwuoGuqdbAypQiMK";
 /**
  * JSONBIN API Server URL
  */
 const serverRootUrl = `https://api.jsonbin.io/v3/b/`;
 const usersUrl = serverRootUrl + "66928642acd3cb34a8659965";
 const cartUrl = serverRootUrl + "66976778ad19ca34f888caab";
-
-
 
 /**
  * retrieve sha of JSON server file to be updated
@@ -91,7 +89,6 @@ async function fetchJsonServer(url) {
     headers: {
       "X-Master-Key": `${token}`,
       "X-Bin-Meta": "false",
-
     },
   });
   if (!response.ok) {
