@@ -110,6 +110,7 @@
   background-color: $light-nav-bg;
   max-width: calc(70vw + 40px);
   border-radius: 40px;
+  z-index: 3;
 }
 .mobile-search-form input {
   background-color: $light-nav-bg;

@@ -112,6 +112,7 @@
   background-color: #9cafaa;
   max-width: calc(70vw + 40px);
   border-radius: 40px;
+  z-index: 3;
 }
 
 .mobile-search-form input {
