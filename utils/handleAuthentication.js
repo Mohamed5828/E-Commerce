@@ -1,4 +1,3 @@
-import { clearCartOnLogout } from "../layout/cart.js";
 import { fetchUsers, putUsers } from "./HandleAPI.js";
 
 /**
@@ -47,6 +46,8 @@ export async function handleSignIn(event) {
     if (user) {
       if (remMe) {
         localStorage.setItem("auth-user", user.id);
+        let fetchedCart = JSON.parse(localStorage.getItem("cart"));
+        putUsers(fetchedCart);
       } else {
         sessionStorage.setItem("auth-user", user.id);
       }
@@ -59,7 +60,7 @@ export async function handleSignIn(event) {
     console.error(e);
     alert(e);
   }
-  location.href = `../homepage.html`;
+  location.href = `../index.html`;
 }
 
 /**
@@ -126,6 +127,5 @@ export function getLoggedInUserId() {
 export function logout() {
   localStorage.removeItem("auth-user");
   sessionStorage.removeItem("auth-user");
-  clearCartOnLogout();
-  location.href = `../homepage.html`;
+  location.href = `../index.html`;
 }

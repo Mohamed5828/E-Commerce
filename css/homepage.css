@@ -120,6 +120,10 @@ body {
   background-color: #fbf3d5;
   margin-top: 2.5rem;
 }
+.categories.dark-mode {
+  background-color: #404258;
+  color: #ffffff;
+}
 
 .categories h2 {
   font-size: 2.5rem;
@@ -168,6 +172,10 @@ body {
   padding: 0.75rem;
   text-align: center;
 }
+.features.dark-mode {
+  background-color: #2f273f;
+  color: #ffffff;
+}
 
 .features > div img {
   width: 5rem;
@@ -185,6 +193,10 @@ body {
   text-align: center;
   padding: 50px 20px;
   background-color: #fff;
+}
+.happy-customers.dark-mode {
+  background-color: #404258;
+  color: #ffffff;
 }
 
 .happy-customers h2 {
@@ -214,6 +226,10 @@ body {
   margin: auto;
   width: 20rem;
 }
+.customer-card.dark-mode {
+  background-color: #1f3545;
+  color: #ffffff;
+}
 
 .customer-card img {
   width: 80px;
@@ -227,6 +243,10 @@ body {
   color: #fff;
   padding: 40px 20px;
   text-align: left;
+}
+.footer.dark-mode {
+  background-color: #2f273f;
+  color: #ffffff;
 }
 
 .footer-container {

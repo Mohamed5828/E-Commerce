@@ -124,6 +124,10 @@ body {
   text-align: center;
   background-color: #fbf3d5;
   margin-top: 2.5rem;
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
 }
 
 .categories h2 {
@@ -172,6 +176,10 @@ body {
   margin-top: 2.5rem;
   padding: 0.75rem;
   text-align: center;
+  &.dark-mode {
+    background-color: #2f273f;
+    color: $dark-text;
+  }
 }
 
 .features > div img {
@@ -190,6 +198,10 @@ body {
   text-align: center;
   padding: 50px 20px;
   background-color: #fff;
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
 }
 
 .happy-customers h2 {
@@ -218,6 +230,10 @@ body {
   border-radius: 10px;
   margin: auto;
   width: 20rem;
+  &.dark-mode {
+    background-color: #1f3545;
+    color: $dark-text;
+  }
 }
 
 .customer-card img {
@@ -232,6 +248,10 @@ body {
   color: #fff;
   padding: 40px 20px;
   text-align: left;
+  &.dark-mode {
+    background-color: #2f273f;
+    color: $dark-text;
+  }
 }
 
 .footer-container {

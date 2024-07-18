@@ -9,7 +9,7 @@ document
 document.getElementById("signin-form").addEventListener("submit", handleSignIn);
 document.getElementById("signup-form").addEventListener("submit", handleSignUp);
 document.querySelector(".close-auth").addEventListener("click", () => {
-  location.href = `../homepage.html`;
+  location.href = `../index.html`;
 });
 
 /**
