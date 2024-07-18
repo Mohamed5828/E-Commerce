@@ -36,8 +36,6 @@ export async function handleSignIn(event) {
   let remMe = form["rem-me"].checked;
   try {
     let users = await fetchUsers();
-    console.log(users[0]);
-    console.log(hashPassword(password, users[0].salt));
     let user = users.find(
       (user) =>
         user.email === email &&
@@ -96,9 +94,12 @@ export async function handleSignUp(event) {
       document.getElementById("auth-err-msg-signup").style.display = "none";
       users.push(user);
       // localStorage.setItem("auth-users", JSON.stringify(users))
+      console.log("pre pushed user");
       await putUsers(users);
+      console.log("pushed user");
       // localStorage.setItem("auth-user-id-counter", user_id_counter + 1)
-      form.submit();
+      window.location.reload();
+      // form.submit();
     }
   } catch (e) {
     console.error(e);

@@ -186,12 +186,10 @@ export async function initCart() {
   }
 
   function saveCart(cart) {
-    console.log(getLoggedInUserId());
     if (getLoggedInUserId() === -1) {
       localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       putUserCart(cart);
-      location.href = `../layout/auth.html`;
     }
   }
 
@@ -204,6 +202,7 @@ export async function initCart() {
         }
         await putUserCart(cart).then(handleCheckout);
         clearCart();
+        location.href = "/";
       } catch (error) {
         alert(error);
       }

@@ -1,5 +1,5 @@
-import {fetchCarts, fetchUsers, putCarts, putUsers} from "./HandleAPI.js";
-import {getLoggedInUserId} from "./handleAuthentication.js";
+import { fetchCarts, fetchUsers, putCarts, putUsers } from "./HandleAPI.js";
+import { getLoggedInUserId } from "./handleAuthentication.js";
 
 export async function handleCheckout() {
   let user_id = getLoggedInUserId();
@@ -24,15 +24,14 @@ export async function handleCheckout() {
     users[index].orders.push({
       date: new Date().toLocaleString(),
       items: cart,
-    })
+    });
     // console.log("User orders, " + JSON.stringify(users[index].orders));
     // console.log("Users, " + JSON.stringify(users))
     // console.log("Carts, " + JSON.stringify(carts))
     // console.log("Cart idx, " + cartIdx)
-    await putUsers(users)
+    await putUsers(users);
     carts.splice(cartIdx, 1);
     await putCarts(carts);
-
   });
 }
 
@@ -48,16 +47,16 @@ async function fetchOrders() {
 
 export function populateOrders(section) {
   fetchOrders()
-      .then((orders) => {
-        orders.reverse();
-        // console.log(orders)
-        orders.forEach((order) => {
-          // console.log(order.items.items);
-          let orderItems = "";
-          let orderTotal = 0;
-          order.items.forEach((item) => {
-            // console.log(item);
-            orderItems += `<div class="order-item">
+    .then((orders) => {
+      orders.reverse();
+      // console.log(orders)
+      orders.forEach((order) => {
+        // console.log(order.items.items);
+        let orderItems = "";
+        let orderTotal = 0;
+        order.items.forEach((item) => {
+          // console.log(item);
+          orderItems += `<div class="order-item">
               <img src="${item.thumbnail}" alt="Loading item">
               <article>
                 <p><b>Product Name:</b> ${item.title}</p>
@@ -66,9 +65,9 @@ export function populateOrders(section) {
                 <p><b>Quantity:</b> ${item.amount}</p>
               </article>
             </div>`;
-            orderTotal += parseFloat(item.price) * parseFloat(item.amount);
-          });
-          section.innerHTML += `
+          orderTotal += parseFloat(item.price) * parseFloat(item.amount);
+        });
+        section.innerHTML += `
             <div class="order-card-item">
               <header>
                 <p>Order Date ${order.date}</p>
@@ -82,7 +81,7 @@ export function populateOrders(section) {
               </footer>
             </div>
           `;
-        });
-      })
-      .catch((e) => console.error(e));
+      });
+    })
+    .catch((e) => console.error(e));
 }

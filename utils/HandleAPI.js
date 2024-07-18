@@ -3,7 +3,7 @@ import { getLoggedInUserId } from "./handleAuthentication.js";
 /**
  * JSONBIN key
  */
-const token = "$2a$10$gQf4K9wk82oEEoDYDPKwGukkQulVLQsfNz6NehwuoGuqdbAypQiMK";
+const token = "$2a$10$kcWJLXlpHYhVs8mKcWgPL.rNiGADUvI9SaXE8JIqg2UuWWmMgztIK";
 /**
  * JSONBIN API Server URL
  */
